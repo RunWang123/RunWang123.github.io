@@ -11,6 +11,22 @@ author_profile: true
 
 {% include base_path %}
 
+<h2>Conference Papers</h2>
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      <a href="{{ base_path }}/publication/mapp-paper" rel="permalink">MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps</a>
+    </h2>
+    <p>Published in <i>IEEE/ACM International Symposium on Quality of Service (IWQoS 2025)</i>, 2025</p>
+    <p class="archive__item-excerpt" itemprop="description">When mobile apps are used extensively in our daily lives, their responsiveness has become an important factor that can negatively impact the user experience. In this paper, we propose MAPP, a framework for Mobile App Predictive Pre-caching.</p>
+    <p><a href="https://par.nsf.gov/biblio/10598216">Download Paper</a></p>
+  </article>
+</div>
+
+<hr>
+
+<h3>Automatically Generated Publications</h3>
 {% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
