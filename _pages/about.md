@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Run Wang | PhD Student in Electrical and Computer Engineering | Edge and Mobile Computing"
+title: "Run Wang - PhD Student in Electrical and Computer Engineering - Edge and Mobile Computing"
 author_profile: true
 redirect_from: 
   - /about/
