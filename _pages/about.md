@@ -21,7 +21,7 @@ Research Interests
 
 Recent Highlights
 ======
-* **[MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps]** 
+* **MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps** , published in IWQoS 2025, July 2025
 * **Component Segmentation of Engineering Drawings Using Graph Convolutional Networks**, published in *Computers in Industry*, May 2023 (Acknowledged)
 
 Get in touch!
@@ -29,24 +29,5 @@ Get in touch!
 Feel free to connect if you are interested in my work or would like to collaborate.  
 You can reach me at **wangr654@gmail.com** or check out my [GitHub](https://github.com/RunWang123).
 
----
-
-About This Site
-======
-This website is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io), built on top of [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/).  
-It is hosted using [GitHub Pages](https://pages.github.com), allowing free, automatic updates as I push new content.
-
-The website is structured with markdown-based content files, automatically generating pages for:
-- Publications
-- Talks
-- Teaching
-- Projects
-- Curriculum Vitae (CV)
-
-This design makes it easy to maintain and extend without complex backend systems. Markdown-driven academic websites allow high flexibility, fast load times, and ease of version control using Git.
-
-If you are interested in creating your own academic website, you can fork [this template](https://github.com/academicpages/academicpages.github.io) and customize it just like I did!
-
-More information about customizing the Academic Pages template is available [here](https://academicpages.github.io/markdown/).
 
 ---
