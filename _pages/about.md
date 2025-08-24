@@ -1,23 +1,21 @@
 ---
 permalink: /
-title: "Run Wang - PhD Student in Electrical and Computer Engineering - Edge and Mobile Computing"
+title: "Run Wang - PhD Student in School of Computing at Clemson University"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-Welcome to my academic website! I am a Ph.D. student in Electrical and Computer Engineering at The Ohio State University, with a focus on Edge Computing and Mobile Computing. I am passionate about building efficient systems for edge devices and mobile platforms, and my research broadly spans mobile app optimization, system profiling, and energy-efficient computing.
+Welcome to my academic website! I am a Ph.D. student in Computer Science at Clemson University, with a focus on Computer Vision and Trustworthy AI. I am passionate about exploring novel algorithms for 3D Vision and building trustworthy AI for Autonomous Vehicles.
 
-Before joining OSU, I earned my Master’s degree from Carnegie Mellon University and my Bachelor’s degree from Rensselaer Polytechnic Institute. In both programs, I worked on research projects involving computer vision, system optimization, and AI-based engineering applications.
+Before joining Clemson University, I earned my Master’s degree from Carnegie Mellon University and my Bachelor’s degree from Rensselaer Polytechnic Institute. In both programs, I worked on research projects involving computer vision, system optimization, and AI-based engineering applications.
 
 Research Interests
 ======
-* Mobile and Edge Computing Systems
-* Mobile App Optimization and Profiling
-* Energy-Efficient System Design
-* Cloud/Edge/IoT Application Architectures
-* Machine Learning for Systems
+* 3D Vision
+* Generative Model
+* AI for Autonomous Vehicles
 
 Recent Highlights
 ======
