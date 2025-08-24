@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Run Wang",
-    "email": "wang.10067@osu.edu",
+    "email": "runw@clemson.edu",
     "phone": "",
     "website": "https://runwang123.github.io",
-    "summary": "Research Associate at the Ohio State University. ",
+    "summary": "Research Assistant at Clemson University. ",
     "location": {
       "address": "",
       "postalCode": "",
@@ -33,8 +33,8 @@
   "work": [],
   "education": [
     {
-      "institution": "The Ohio State University",
-      "area": "Ph.D in Electrical and Computer Engineering",
+      "institution": "Clemson University",
+      "area": "Ph.D in Computer Science",
       "studyType": "",
       "startDate": "",
       "endDate": "2029",
@@ -64,36 +64,7 @@
   "languages": [],
   "interests": ["Mobile Computing", "Edge Computing"],
   "references": [],
-  "publications": [
-    {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "http://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "http://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "http://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "http://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
-    }
-  ],
+  "publications": [],
   "presentations": []
   ,
   "teaching": []
