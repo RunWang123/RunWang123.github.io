@@ -11,8 +11,8 @@ redirect_from:
 
 Education
 ======
-* Ph.D. in Electrical and Computer Engineering, The Ohio State University, 2029 (expected)
-  * Concentration: Edge Computing and Mobile Computing
+* Ph.D. in Computer Science, Clemson University, 2029 (expected)
+  * Concentration: 3D Vision, Generative Model, Trustworthy AI for AV
 * M.S. in Electrical and Computer Engineering, Carnegie Mellon University, 2023
   * GPA: 3.71/4.0
 * B.S. in Computer & Systems Engineering, Rensselaer Polytechnic Institute, 2021
@@ -27,6 +27,11 @@ Work Experience
 
 Research Experience
 ======
+
+* Research Assistant  
+  * Vision and Learning Lab, Clemson, SC  
+  * Aug 2025 – Present
+    
 * Research Assistant  
   * MiSUMi & Carnegie Mellon University, Pittsburgh, PA  
   * May 2022 – May 2023
