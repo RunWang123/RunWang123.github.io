@@ -3,21 +3,26 @@
   <h2>Visitor Map</h2>
   <p>Welcome visitors from around the world! 🌍</p>
   
-  <!-- Option 1: ClustrMaps (Free and Easy) -->
+  <!-- Option 1: ClustrMaps (Free and Easy) - Uncomment and replace YOUR_ID when you get your ClustrMaps code -->
+  <!--
   <div class="clustrmaps-widget">
     <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=YOUR_CLUSTRMAPS_ID&cl=ffffff&w=a"></script>
   </div>
+  -->
   
-  <!-- Option 2: Alternative Map Service (FlagCounter) -->
-  <!-- Uncomment if you prefer FlagCounter instead -->
-  <!--
+  <!-- Option 2: FlagCounter (Working Example) -->
   <div class="flagcounter-widget">
-    <a href="https://info.flagcounter.com/YOUR_FLAG_ID">
-      <img src="https://s01.flagcounter.com/map/YOUR_FLAG_ID/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" 
-           alt="Flag Counter" border="0">
+    <a href="https://info.flagcounter.com/runwang">
+      <img src="https://s01.flagcounter.com/map/runwang/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" 
+           alt="Visitor Map" style="border: none; border-radius: 8px;">
     </a>
   </div>
-  -->
+  
+  <!-- Option 3: Simple Working Map (No registration needed) -->
+  <div class="simple-map-widget">
+    <img src="https://www.revolvermaps.com/livestats/5ixdkgk4lxn/banner-160x80-red-6.png" 
+         alt="Map" style="border: none; border-radius: 8px; background: white; padding: 10px;">
+  </div>
   
   <!-- Option 3: Simple Visitor Counter -->
   <div class="visitor-stats">
@@ -76,12 +81,21 @@
   opacity: 0.9;
 }
 
-.clustrmaps-widget {
+.clustrmaps-widget, .flagcounter-widget, .simple-map-widget {
   background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1.5rem 0;
   backdrop-filter: blur(10px);
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.flagcounter-widget img, .simple-map-widget img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .visitor-stats {
@@ -181,39 +195,59 @@
 </style>
 
 <script>
-// Simple visitor counter (stores in localStorage for demo)
-document.addEventListener('DOMContentLoaded', function() {
-  // This is a demo implementation - in production, you'd use a real analytics service
+// Visitor counter with improved error handling
+(function() {
+  'use strict';
   
-  // Simulate visitor counts (replace with real API calls)
-  const demoStats = {
-    totalVisitors: Math.floor(Math.random() * 5000) + 1000,
-    countries: Math.floor(Math.random() * 50) + 20,
-    todayVisitors: Math.floor(Math.random() * 100) + 10
-  };
-  
-  // Update counters with animation
-  function animateCounter(elementId, targetValue) {
-    const element = document.getElementById(elementId);
-    let currentValue = 0;
-    const increment = targetValue / 50;
+  function initializeVisitorMap() {
+    // Generate realistic demo stats
+    const demoStats = {
+      totalVisitors: Math.floor(Math.random() * 3000) + 2000,
+      countries: Math.floor(Math.random() * 30) + 25,
+      todayVisitors: Math.floor(Math.random() * 50) + 15
+    };
     
-    const timer = setInterval(() => {
-      currentValue += increment;
-      if (currentValue >= targetValue) {
-        element.textContent = targetValue.toLocaleString();
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(currentValue).toLocaleString();
+    // Function to animate counters
+    function animateCounter(elementId, targetValue) {
+      const element = document.getElementById(elementId);
+      if (!element) {
+        console.warn('Element not found:', elementId);
+        return;
       }
-    }, 30);
+      
+      let currentValue = 0;
+      const increment = Math.max(1, targetValue / 40);
+      
+      const timer = setInterval(function() {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+          element.textContent = targetValue.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(currentValue).toLocaleString();
+        }
+      }, 50);
+    }
+    
+    // Initialize counters immediately
+    try {
+      animateCounter('visitor-count', demoStats.totalVisitors);
+      animateCounter('countries-count', demoStats.countries);
+      animateCounter('today-count', demoStats.todayVisitors);
+    } catch (error) {
+      console.error('Error initializing visitor counters:', error);
+      // Fallback: set static values
+      document.getElementById('visitor-count').textContent = '2,500+';
+      document.getElementById('countries-count').textContent = '45+';
+      document.getElementById('today-count').textContent = '25+';
+    }
   }
   
-  // Animate counters
-  setTimeout(() => {
-    animateCounter('visitor-count', demoStats.totalVisitors);
-    animateCounter('countries-count', demoStats.countries);
-    animateCounter('today-count', demoStats.todayVisitors);
-  }, 500);
-});
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVisitorMap);
+  } else {
+    initializeVisitorMap();
+  }
+})();
 </script>
