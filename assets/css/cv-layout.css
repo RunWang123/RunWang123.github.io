@@ -199,14 +199,111 @@
   }
 }
 
-/* Download links styling */
-.cv-download-links {
-  margin-top: 2rem;
+/* CV Download Sections */
+.cv-download-header {
   text-align: center;
-  padding: 1rem;
-  border-top: 1px solid #f2f2f2;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
 }
 
-.cv-download-links a {
-  margin: 0 0.5rem;
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2a7ae2;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  border: 2px solid #2a7ae2;
+}
+
+.cv-download-btn:hover {
+  background-color: #1756a9;
+  border-color: #1756a9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(42, 122, 226, 0.3);
+}
+
+.cv-download-footer {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 2px solid #f0f0f0;
+  background-color: #fafafa;
+}
+
+.cv-download-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-download-links .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.cv-download-links .btn--primary {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.cv-download-links .btn--primary:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.cv-download-links .btn--secondary {
+  background-color: #2b7cd6;
+  color: white;
+  border-color: #2b7cd6;
+}
+
+.cv-download-links .btn--secondary:hover {
+  background-color: #1f5f99;
+  border-color: #1f5f99;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(43, 124, 214, 0.3);
+}
+
+.cv-last-updated {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive Design for Download Buttons */
+@media (max-width: 768px) {
+  .cv-download-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cv-download-links .btn {
+    width: 200px;
+    justify-content: center;
+  }
+  
+  .cv-download-btn {
+    width: 200px;
+    justify-content: center;
+  }
 }

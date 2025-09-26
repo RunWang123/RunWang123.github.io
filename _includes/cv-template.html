@@ -43,6 +43,13 @@
       {% endfor %}
     </div>
     {% endif %}
+    
+    <!-- CV Download Section -->
+    <div class="cv-download-header">
+      <a href="{{ site.baseurl }}/assets/cv.pdf" class="cv-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Download CV (PDF)
+      </a>
+    </div>
   </div>
   
   {% if cv.basics.summary %}
@@ -348,4 +355,17 @@
     </ul>
   </div>
   {% endif %}
+  
+  <!-- Download Links Footer -->
+  <div class="cv-download-footer">
+    <div class="cv-download-links">
+      <a href="{{ site.baseurl }}/assets/cv.pdf" class="btn btn--primary" target="_blank">
+        <i class="fas fa-file-pdf"></i> Download PDF Version
+      </a>
+      <a href="{{ site.baseurl }}/assets/cv.docx" class="btn btn--secondary" target="_blank">
+        <i class="fas fa-file-word"></i> Download Word Version
+      </a>
+    </div>
+    <p class="cv-last-updated">Last updated: {{ site.time | date: "%B %Y" }}</p>
+  </div>
 </div>
