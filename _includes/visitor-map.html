@@ -24,20 +24,10 @@
          alt="Map" style="border: none; border-radius: 8px; background: white; padding: 10px;">
   </div>
   
-  <!-- Option 3: Simple Visitor Counter -->
-  <div class="visitor-stats">
-    <div class="visitor-stat">
-      <span class="stat-number" id="visitor-count">Loading...</span>
-      <span class="stat-label">Total Visitors</span>
-    </div>
-    <div class="visitor-stat">
-      <span class="stat-number" id="countries-count">Loading...</span>
-      <span class="stat-label">Countries</span>
-    </div>
-    <div class="visitor-stat">
-      <span class="stat-number" id="today-count">Loading...</span>
-      <span class="stat-label">Today</span>
-    </div>
+  <!-- Real visitor tracking with working map services -->
+  <div class="visitor-info">
+    <p>📊 Visitor statistics are tracked by the map services above</p>
+    <p><small>The world map shows real visitor data and locations</small></p>
   </div>
 </div>
 
@@ -98,37 +88,23 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.visitor-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-
-.visitor-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.visitor-info {
   background: rgba(255, 255, 255, 0.1);
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
   backdrop-filter: blur(10px);
-  min-width: 100px;
+  text-align: center;
 }
 
-.stat-number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 0.5rem;
+.visitor-info p {
+  margin: 0.5rem 0;
+  opacity: 0.9;
 }
 
-.stat-label {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.visitor-info small {
+  opacity: 0.7;
+  font-style: italic;
 }
 
 .custom-visitor-map {
@@ -195,59 +171,46 @@
 </style>
 
 <script>
-// Visitor counter with improved error handling
+// Visitor counter with animation (optional enhancement)
 (function() {
   'use strict';
   
   function initializeVisitorMap() {
-    // Generate realistic demo stats
-    const demoStats = {
-      totalVisitors: Math.floor(Math.random() * 3000) + 2000,
-      countries: Math.floor(Math.random() * 30) + 25,
-      todayVisitors: Math.floor(Math.random() * 50) + 15
+    // Get current static values and optionally animate them
+    const elements = {
+      'visitor-count': parseInt(document.getElementById('visitor-count').textContent.replace(/,/g, '')),
+      'countries-count': parseInt(document.getElementById('countries-count').textContent),
+      'today-count': parseInt(document.getElementById('today-count').textContent)
     };
     
-    // Function to animate counters
-    function animateCounter(elementId, targetValue) {
+    // Optional: Add subtle animation effect
+    Object.keys(elements).forEach(function(elementId) {
       const element = document.getElementById(elementId);
-      if (!element) {
-        console.warn('Element not found:', elementId);
-        return;
+      const targetValue = elements[elementId];
+      
+      if (element && !isNaN(targetValue)) {
+        // Add a subtle counting animation
+        let currentValue = Math.max(0, targetValue - 10);
+        element.textContent = currentValue.toLocaleString();
+        
+        const timer = setInterval(function() {
+          currentValue++;
+          if (currentValue >= targetValue) {
+            element.textContent = targetValue.toLocaleString();
+            clearInterval(timer);
+          } else {
+            element.textContent = currentValue.toLocaleString();
+          }
+        }, 100);
       }
-      
-      let currentValue = 0;
-      const increment = Math.max(1, targetValue / 40);
-      
-      const timer = setInterval(function() {
-        currentValue += increment;
-        if (currentValue >= targetValue) {
-          element.textContent = targetValue.toLocaleString();
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(currentValue).toLocaleString();
-        }
-      }, 50);
-    }
-    
-    // Initialize counters immediately
-    try {
-      animateCounter('visitor-count', demoStats.totalVisitors);
-      animateCounter('countries-count', demoStats.countries);
-      animateCounter('today-count', demoStats.todayVisitors);
-    } catch (error) {
-      console.error('Error initializing visitor counters:', error);
-      // Fallback: set static values
-      document.getElementById('visitor-count').textContent = '2,500+';
-      document.getElementById('countries-count').textContent = '45+';
-      document.getElementById('today-count').textContent = '25+';
-    }
+    });
   }
   
-  // Run when DOM is ready
+  // Run when DOM is ready (optional animation)
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeVisitorMap);
   } else {
-    initializeVisitorMap();
+    setTimeout(initializeVisitorMap, 500); // Small delay for better effect
   }
 })();
 </script>
