@@ -4,13 +4,13 @@
     "email": "runw@clemson.edu",
     "phone": "",
     "website": "https://runwang123.github.io",
-    "summary": "Research Assistant at Clemson University. ",
+    "summary": "Research Assistant at Clemson University focusing on 3D Vision, Generative Models, and Trustworthy AI.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
+      "city": "Clemson, SC",
       "countryCode": "US",
-      "region": ""
+      "region": "South Carolina"
     },
     "profiles": [
       {
@@ -30,42 +30,152 @@
       }
     ]
   },
-  "work": [],
+  "work": [
+    {
+      "company": "Computer Packages Inc.",
+      "position": "Application Developer – Fullstack",
+      "website": "",
+      "startDate": "2023-05",
+      "endDate": "2024-04",
+      "summary": "Rockville, MD",
+      "highlights": [
+        "Assisted migration from legacy systems to newer technologies",
+        "Ensured data integrity and optimized SQL Server queries",
+        "Utilized stored procedures and query tuning techniques"
+      ]
+    }
+  ],
+  "research": [
+    {
+      "company": "Vision and Learning Lab",
+      "position": "Research Assistant",
+      "website": "",
+      "startDate": "2025-08",
+      "endDate": "Present",
+      "summary": "Clemson, SC",
+      "highlights": []
+    },
+    {
+      "company": "MiSUMi & Carnegie Mellon University",
+      "position": "Research Assistant",
+      "website": "",
+      "startDate": "2022-05",
+      "endDate": "2023-05",
+      "summary": "Pittsburgh, PA",
+      "highlights": [
+        "Developed graph-based models to extract component-level information from engineering drawings using PyTorch",
+        "Achieved over 90% accuracy in component extraction"
+      ]
+    },
+    {
+      "company": "CyLab, Carnegie Mellon University",
+      "position": "Research Assistant",
+      "website": "",
+      "startDate": "2022-01",
+      "endDate": "2022-05",
+      "summary": "Pittsburgh, PA",
+      "highlights": [
+        "Collected 80+ Linux malware samples and traced dynamic system-level behaviors",
+        "Created an in-house database with 14 selected behavior features"
+      ]
+    },
+    {
+      "company": "RPI-IBM Cognitive and Immersive Systems Lab",
+      "position": "Research Assistant",
+      "website": "",
+      "startDate": "2020-01",
+      "endDate": "2020-12",
+      "summary": "Troy, NY",
+      "highlights": [
+        "Built a real-time gesture recognition system using C# and Python",
+        "Collected skeleton data from 600+ samples across diverse participants"
+      ]
+    }
+  ],
   "education": [
     {
       "institution": "Clemson University",
-      "area": "Ph.D in Computer Science",
-      "studyType": "",
+      "area": "Ph.D. in Computer Science",
+      "studyType": "Ph.D.",
       "startDate": "",
-      "endDate": "2029",
+      "endDate": "2029 (expected)",
       "gpa": null,
-      "courses": []
+      "courses": [],
+      "summary": "Concentration: 3D Vision, Generative Model, Trustworthy AI for AV"
     },
     {
       "institution": "Carnegie Mellon University",
       "area": "M.S. in Electrical and Computer Engineering",
-      "studyType": "",
+      "studyType": "M.S.",
       "startDate": "",
       "endDate": "2023",
-      "gpa": null,
+      "gpa": "3.71/4.0",
       "courses": []
     },
     {
       "institution": "Rensselaer Polytechnic Institute",
       "area": "B.S. in Computer & Systems Engineering",
-      "studyType": "",
+      "studyType": "B.S.",
       "startDate": "",
       "endDate": "2021",
-      "gpa": null,
+      "gpa": "3.73/4.0",
       "courses": []
     }
   ],
-  "skills": [],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "keywords": ["Python", "Java", "C/C++"]
+    },
+    {
+      "name": "Frameworks/Technologies",
+      "keywords": ["TensorFlow", "PyTorch", "Wireshark", "Docker", "AWS", "Azure", "Terraform", "Kubernetes", "Maven", "Helm", "Kafka", "Git"]
+    }
+  ],
   "languages": [],
-  "interests": ["3D Vision", "Generative Model", "Trustworthy AI", "AI Security for Autonomous Vehicles"],
+  "interests": [
+    {
+      "name": "Research Interests",
+      "keywords": ["3D Vision", "Generative Model", "Trustworthy AI", "AI Security for Autonomous Vehicles"]
+    }
+  ],
   "references": [],
-  "publications": [],
-  "presentations": []
-  ,
+  "publications": [
+    {
+      "name": "MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps",
+      "publisher": "IWQoS 2025",
+      "releaseDate": "2025",
+      "website": "",
+      "summary": "R. Wang, et al."
+    },
+    {
+      "name": "Component Segmentation of Engineering Drawings Using Graph Convolutional Networks",
+      "publisher": "Computers in Industry, vol. 147, p. 103885",
+      "releaseDate": "2023-05",
+      "website": "",
+      "summary": "W. Zhang, et al. (Acknowledgement)"
+    }
+  ],
+  "presentations": [],
+  "projects": [
+    {
+      "name": "User Recommendation MicroService",
+      "date": "2022-08 – 2022-12",
+      "description": "Built a user recommendation system using FastAPI, Vert.x, Spark Scala on AWS and GCP, achieving 10,000 RPS within a $0.7/hr budget.",
+      "url": ""
+    },
+    {
+      "name": "WeCloudChat Service",
+      "date": "2022-08 – 2022-09",
+      "description": "Deployed RESTful Spring applications on GKE, managed scaling with HPA, and configured Azure Front Door for multi-cloud routing.",
+      "url": ""
+    },
+    {
+      "name": "Driver Matching System with Streaming Processing",
+      "date": "2022-01 – 2022-03",
+      "description": "Implemented a real-time driver matching system and managed IoT streams with Samza API.",
+      "url": ""
+    }
+  ],
   "teaching": []
 }
