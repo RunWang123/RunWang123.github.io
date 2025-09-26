@@ -26,9 +26,9 @@
 .cv-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 /* CV Header Section */
@@ -80,15 +80,15 @@
 
 /* CV Sections */
 .cv-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .cv-section h2 {
   font-size: 1.8rem;
   color: #333;
   border-bottom: 2px solid #2a7ae2;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 .cv-list {
@@ -97,16 +97,16 @@
 }
 
 .cv-item {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   border-left: 3px solid #f0f0f0;
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
 }
 
 .cv-item-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .cv-item-title {
@@ -125,22 +125,22 @@
 .cv-item-subtitle {
   color: #555;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .cv-item-detail {
   color: #666;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .cv-highlights {
   list-style: disc;
   margin-left: 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 .cv-highlights li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
   color: #555;
 }
 
@@ -148,13 +148,13 @@
 .cv-skills {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .cv-skill-category h3 {
   font-size: 1.1rem;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .cv-skill-list {
@@ -176,7 +176,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .cv-container {
-    padding: 1rem;
+    padding: 0.8rem;
   }
   
   .cv-item-header {
