@@ -27,6 +27,8 @@ Recent Highlights
 {% endif %}
 {% endfor %}
 
+{% include visitor-map.html %}
+
 Get in touch!
 ======
 Feel free to connect if you are interested in my work or would like to collaborate.  

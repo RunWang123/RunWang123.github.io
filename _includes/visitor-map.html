@@ -1,0 +1,219 @@
+<!-- Visitor Map Widget -->
+<div class="visitor-map-section">
+  <h2>Visitor Map</h2>
+  <p>Welcome visitors from around the world! 🌍</p>
+  
+  <!-- Option 1: ClustrMaps (Free and Easy) -->
+  <div class="clustrmaps-widget">
+    <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=YOUR_CLUSTRMAPS_ID&cl=ffffff&w=a"></script>
+  </div>
+  
+  <!-- Option 2: Alternative Map Service (FlagCounter) -->
+  <!-- Uncomment if you prefer FlagCounter instead -->
+  <!--
+  <div class="flagcounter-widget">
+    <a href="https://info.flagcounter.com/YOUR_FLAG_ID">
+      <img src="https://s01.flagcounter.com/map/YOUR_FLAG_ID/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" 
+           alt="Flag Counter" border="0">
+    </a>
+  </div>
+  -->
+  
+  <!-- Option 3: Simple Visitor Counter -->
+  <div class="visitor-stats">
+    <div class="visitor-stat">
+      <span class="stat-number" id="visitor-count">Loading...</span>
+      <span class="stat-label">Total Visitors</span>
+    </div>
+    <div class="visitor-stat">
+      <span class="stat-number" id="countries-count">Loading...</span>
+      <span class="stat-label">Countries</span>
+    </div>
+    <div class="visitor-stat">
+      <span class="stat-number" id="today-count">Loading...</span>
+      <span class="stat-label">Today</span>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive World Map (Custom Solution) -->
+<div class="custom-visitor-map" id="world-map" style="display: none;">
+  <h3>Interactive Visitor Map</h3>
+  <div id="visitor-world-map"></div>
+  <div class="map-legend">
+    <div class="legend-item">
+      <span class="legend-color" style="background-color: #ff6b6b;"></span>
+      <span>Recent Visitors (Last 7 days)</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color" style="background-color: #4ecdc4;"></span>
+      <span>All Time Visitors</span>
+    </div>
+  </div>
+  
+  <!-- Include advanced analytics if available -->
+  {% include visitor-analytics.html %}
+</div>
+
+<style>
+.visitor-map-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+}
+
+.visitor-map-section h2 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.visitor-map-section p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.clustrmaps-widget {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.visitor-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.visitor-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  min-width: 100px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.custom-visitor-map {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.custom-visitor-map h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+#visitor-world-map {
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.map-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .visitor-stats {
+    gap: 1rem;
+  }
+  
+  .visitor-stat {
+    min-width: 80px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .map-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+</style>
+
+<script>
+// Simple visitor counter (stores in localStorage for demo)
+document.addEventListener('DOMContentLoaded', function() {
+  // This is a demo implementation - in production, you'd use a real analytics service
+  
+  // Simulate visitor counts (replace with real API calls)
+  const demoStats = {
+    totalVisitors: Math.floor(Math.random() * 5000) + 1000,
+    countries: Math.floor(Math.random() * 50) + 20,
+    todayVisitors: Math.floor(Math.random() * 100) + 10
+  };
+  
+  // Update counters with animation
+  function animateCounter(elementId, targetValue) {
+    const element = document.getElementById(elementId);
+    let currentValue = 0;
+    const increment = targetValue / 50;
+    
+    const timer = setInterval(() => {
+      currentValue += increment;
+      if (currentValue >= targetValue) {
+        element.textContent = targetValue.toLocaleString();
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(currentValue).toLocaleString();
+      }
+    }, 30);
+  }
+  
+  // Animate counters
+  setTimeout(() => {
+    animateCounter('visitor-count', demoStats.totalVisitors);
+    animateCounter('countries-count', demoStats.countries);
+    animateCounter('today-count', demoStats.todayVisitors);
+  }, 500);
+});
+</script>

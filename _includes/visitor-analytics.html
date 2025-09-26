@@ -1,0 +1,173 @@
+<!-- Advanced Analytics Integration -->
+<script>
+// Google Analytics Enhanced Visitor Tracking
+(function() {
+  // Check if Google Analytics is loaded
+  if (typeof gtag !== 'undefined') {
+    // Track page view with location data
+    gtag('event', 'page_view', {
+      'page_title': document.title,
+      'page_location': window.location.href,
+      'send_to': 'YOUR_GA_MEASUREMENT_ID'
+    });
+    
+    // Get visitor's approximate location (with permission)
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // Send location data to analytics (optional)
+        gtag('event', 'visitor_location', {
+          'custom_map': {
+            'latitude': position.coords.latitude,
+            'longitude': position.coords.longitude
+          }
+        });
+      }, function(error) {
+        // Handle location access denied
+        console.log('Location access denied by user');
+      });
+    }
+  }
+})();
+
+// Visitor Map Data Management
+class VisitorMapManager {
+  constructor() {
+    this.apiEndpoint = 'YOUR_ANALYTICS_API_ENDPOINT';
+    this.visitorData = [];
+    this.init();
+  }
+  
+  async init() {
+    await this.loadVisitorData();
+    this.updateCounters();
+    this.renderMap();
+  }
+  
+  async loadVisitorData() {
+    try {
+      // In a real implementation, this would fetch from your analytics API
+      // For demo purposes, using mock data
+      this.visitorData = this.generateMockData();
+    } catch (error) {
+      console.error('Failed to load visitor data:', error);
+      this.visitorData = this.generateMockData();
+    }
+  }
+  
+  generateMockData() {
+    // Mock visitor data for demonstration
+    const countries = [
+      { country: 'United States', lat: 39.8283, lng: -98.5795, visitors: 245 },
+      { country: 'China', lat: 35.8617, lng: 104.1954, visitors: 189 },
+      { country: 'Germany', lat: 51.1657, lng: 10.4515, visitors: 156 },
+      { country: 'Japan', lat: 36.2048, lng: 138.2529, visitors: 134 },
+      { country: 'United Kingdom', lat: 55.3781, lng: -3.4360, visitors: 123 },
+      { country: 'Canada', lat: 56.1304, lng: -106.3468, visitors: 98 },
+      { country: 'France', lat: 46.6034, lng: 1.8883, visitors: 87 },
+      { country: 'Australia', lat: -25.2744, lng: 133.7751, visitors: 76 },
+      { country: 'Brazil', lat: -14.2350, lng: -51.9253, visitors: 65 },
+      { country: 'India', lat: 20.5937, lng: 78.9629, visitors: 54 }
+    ];
+    
+    return countries;
+  }
+  
+  updateCounters() {
+    const totalVisitors = this.visitorData.reduce((sum, country) => sum + country.visitors, 0);
+    const totalCountries = this.visitorData.length;
+    const todayVisitors = Math.floor(totalVisitors * 0.05); // Simulate today's traffic
+    
+    this.animateCounter('visitor-count', totalVisitors);
+    this.animateCounter('countries-count', totalCountries);
+    this.animateCounter('today-count', todayVisitors);
+  }
+  
+  animateCounter(elementId, targetValue) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    let currentValue = 0;
+    const increment = targetValue / 50;
+    
+    const timer = setInterval(() => {
+      currentValue += increment;
+      if (currentValue >= targetValue) {
+        element.textContent = targetValue.toLocaleString();
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(currentValue).toLocaleString();
+      }
+    }, 30);
+  }
+  
+  renderMap() {
+    // This would integrate with a mapping library like Leaflet
+    // For now, we'll show the ClustrMaps widget
+    console.log('Visitor data loaded:', this.visitorData);
+  }
+}
+
+// Initialize visitor map when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('visitor-count')) {
+    new VisitorMapManager();
+  }
+});
+</script>
+
+<!-- Real-time Visitor Indicator -->
+<div class="realtime-visitors">
+  <div class="online-indicator">
+    <span class="pulse-dot"></span>
+    <span id="online-count">3</span> visitors online now
+  </div>
+</div>
+
+<style>
+.realtime-visitors {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.online-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+#online-count {
+  font-weight: bold;
+  color: #4ade80;
+}
+</style>
