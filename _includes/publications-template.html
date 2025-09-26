@@ -70,15 +70,17 @@
       
       {% if include.show_bibtex %}
       <div class="publication-bibtex" id="bibtex-{{ pub.id }}" style="display: none;">
-        <pre><code>@{{ pub.type }}{{'{'}}{{ pub.bibtex_key }},
-  title = {{'{'}}{{ pub.title }}{{'}'}},
-  author = {{'{'}}{{ pub.authors }}{{'}'}},
-  {% if pub.type == 'journal' %}journal = {{'{'}}{{ pub.venue }}{{'}'}}{% else %}booktitle = {{'{'}}{{ pub.venue }}{{'}'}}{%endif%},
-  year = {{'{'}}{{ pub.year }}{{'}'}},
-  {% if pub.volume %}volume = {{'{'}}{{ pub.volume }}{{'}'}},{% endif %}
-  {% if pub.pages %}pages = {{'{'}}{{ pub.pages }}{{'}'}},{% endif %}
-  {% if pub.url %}url = {{'{'}}{{ pub.url }}{{'}'}},{% endif %}
-}</code></pre>
+        {% assign open_brace = "{" %}
+        {% assign close_brace = "}" %}
+        <pre><code>@{{ pub.type }}{{ open_brace }}{{ pub.bibtex_key }},
+  title = {{ open_brace }}{{ pub.title }}{{ close_brace }},
+  author = {{ open_brace }}{{ pub.authors }}{{ close_brace }},
+  {% if pub.type == 'journal' %}journal = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% else %}booktitle = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% endif %},
+  year = {{ open_brace }}{{ pub.year }}{{ close_brace }},
+  {% if pub.volume %}volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }},{% endif %}
+  {% if pub.pages %}pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }},{% endif %}
+  {% if pub.url %}url = {{ open_brace }}{{ pub.url }}{{ close_brace }},{% endif %}
+{{ close_brace }}</code></pre>
       </div>
       {% endif %}
     </div>
