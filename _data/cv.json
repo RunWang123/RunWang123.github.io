@@ -140,22 +140,6 @@
     }
   ],
   "references": [],
-  "publications": [
-    {
-      "name": "MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps",
-      "publisher": "IWQoS 2025",
-      "releaseDate": "2025",
-      "website": "https://par.nsf.gov/biblio/10598216",
-      "summary": "R. Wang, et al."
-    },
-    {
-      "name": "Component Segmentation of Engineering Drawings Using Graph Convolutional Networks",
-      "publisher": "Computers in Industry, vol. 147, p. 103885",
-      "releaseDate": "2023-05",
-      "website": "",
-      "summary": "W. Zhang, et al. (Acknowledgement)"
-    }
-  ],
   "presentations": [],
   "projects": [
     {

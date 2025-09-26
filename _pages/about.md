@@ -20,8 +20,12 @@ Research Interests
 Recent Highlights
 ======
 * Become a PhD student at Clemson University (Co-advised by Dr. Siyu Huang ([website](https://siyuhuang.github.io/)) and Dr. Mert D. Pesé ([website](https://mpese.com/)))
-* **MAPP: Predictive UI View Pre-caching for Improving the Responsiveness of Mobile Apps** , published in IWQoS 2025, July 2025
-* **Component Segmentation of Engineering Drawings Using Graph Convolutional Networks**, published in *Computers in Industry*, May 2023 (Acknowledged)
+
+{% assign publications = site.data.publications.publications %}
+{% for pub in publications %}
+{% if pub.featured %}* **{{ pub.title }}**, published in {{ pub.venue_short }}, {{ pub.month }} {{ pub.year }}{% if pub.note %} ({{ pub.note }}){% endif %}
+{% endif %}
+{% endfor %}
 
 Get in touch!
 ======
