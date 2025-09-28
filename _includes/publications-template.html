@@ -7,15 +7,20 @@
       {% continue %}
     {% endif %}
     
-    <div class="publication-item" id="{{ pub.id }}">
+    <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}">
       <div class="publication-header">
-        <h3 class="publication-title">
-          {% if pub.url %}
-            <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
-          {% else %}
-            {{ pub.title }}
-          {% endif %}
-        </h3>
+        {% if pub.venue_short %}
+          <div class="publication-venue-badge">{{ pub.venue_short }}</div>
+        {% endif %}
+        <div class="publication-content">
+          <h3 class="publication-title">
+            {% if pub.url %}
+              <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
+            {% else %}
+              {{ pub.title }}
+            {% endif %}
+          </h3>
+        </div>
         {% if pub.featured %}
           <span class="publication-featured">Featured</span>
         {% endif %}
@@ -24,11 +29,7 @@
       <div class="publication-authors">{{ pub.authors }}</div>
       
       <div class="publication-venue">
-        <em>{{ pub.venue }}</em>
-        {% if pub.volume %}, vol. {{ pub.volume }}{% endif %}
-        {% if pub.pages %}, p. {{ pub.pages }}{% endif %}
-        , {{ pub.month }} {{ pub.year }}
-        {% if pub.note %} ({{ pub.note }}){% endif %}
+        <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
       </div>
       
       {% if pub.abstract and include.show_abstracts %}
