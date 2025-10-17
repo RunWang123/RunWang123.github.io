@@ -19,7 +19,7 @@ Research Interests
 
 Recent Highlights
 ======
-* Become a PhD student at Clemson University (Co-advised by Dr. Siyu Huang ([website](https://siyuhuang.github.io/)) and Dr. Mert D. Pesé ([website](https://mpese.com/)))
+* Become a PhD student at Clemson University (Co-advised by Dr. [Siyu Huang](https://siyuhuang.github.io/) and Dr. [Mert D. Pesé](https://mpese.com/))
 
 {% assign publications = site.data.publications.publications %}
 {% for pub in publications %}
