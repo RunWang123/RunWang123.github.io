@@ -23,7 +23,7 @@ Recent Highlights
 
 {% assign publications = site.data.publications.publications %}
 {% for pub in publications %}
-{% if pub.featured %}* **{{ pub.title }}**, published in {{ pub.venue_short }}, {{ pub.month }} {{ pub.year }}{% if pub.note %} ({{ pub.note }}){% endif %}
+{% if pub.featured %}* **{{ pub.title }}**, published in {{ pub.venue_short }}, {{ pub.month }} {{ pub.year }}{% if pub.note != "" %} ({{ pub.note }}){% endif %}
 {% endif %}
 {% endfor %}
 
