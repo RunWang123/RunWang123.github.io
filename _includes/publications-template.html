@@ -3,102 +3,102 @@
 <!-- Publications List Template -->
 <div class="publications-container">
   {% for pub in publications %}
-    {% if include.featured_only and pub.featured != true %}
-      {% continue %}
-    {% endif %}
-    
-    <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}">
-      <div class="publication-header">
-        {% if pub.venue_short %}
-          <div class="publication-venue-badge">{{ pub.venue_short }}</div>
-        {% endif %}
-        <div class="publication-content">
-          <h3 class="publication-title">
-            {% if pub.url %}
-              <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
-            {% else %}
-              {{ pub.title }}
-            {% endif %}
-          </h3>
-        </div>
-        {% if pub.featured %}
-          <span class="publication-featured">Featured</span>
-        {% endif %}
-      </div>
-      
-      <div class="publication-authors">{{ pub.authors }}</div>
-      
-      <div class="publication-venue">
-        <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
-      </div>
-      
-      {% if pub.abstract and include.show_abstracts %}
-      <div class="publication-abstract">
-        <details>
-          <summary>Abstract</summary>
-          <p>{{ pub.abstract }}</p>
-        </details>
-      </div>
+  {% if include.featured_only and pub.featured != true %}
+  {% continue %}
+  {% endif %}
+
+  <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}">
+    <div class="publication-header">
+      {% if pub.venue_short %}
+      <div class="publication-venue-badge">{{ pub.venue_short }}</div>
       {% endif %}
-      
-      <div class="publication-links">
-        {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank" class="pub-link pub-link-paper">
-            <i class="fas fa-external-link-alt"></i> Paper
-          </a>
-        {% endif %}
-        {% if pub.pdf_url %}
-          <a href="{{ pub.pdf_url }}" target="_blank" class="pub-link pub-link-pdf">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-        {% endif %}
-        {% if pub.slides_url %}
-          <a href="{{ pub.slides_url }}" target="_blank" class="pub-link pub-link-slides">
-            <i class="fas fa-presentation"></i> Slides
-          </a>
-        {% endif %}
-        {% if pub.code_url %}
-          <a href="{{ pub.code_url }}" target="_blank" class="pub-link pub-link-code">
-            <i class="fas fa-code"></i> Code
-          </a>
-        {% endif %}
-        {% if include.show_bibtex %}
-          <button class="pub-link pub-link-bibtex" onclick="toggleBibtex('{{ pub.id }}')">
-            <i class="fas fa-quote-right"></i> BibTeX
-          </button>
-        {% endif %}
+      <div class="publication-content">
+        <h3 class="publication-title">
+          {% if pub.url %}
+          <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
+          {% else %}
+          {{ pub.title }}
+          {% endif %}
+        </h3>
       </div>
-      
+      {% if pub.featured %}
+      <span class="publication-featured">Featured</span>
+      {% endif %}
+    </div>
+
+    <div class="publication-authors">{{ pub.authors }}</div>
+
+    <div class="publication-venue">
+      <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
+    </div>
+
+    {% if pub.abstract and include.show_abstracts %}
+    <div class="publication-abstract">
+      <details>
+        <summary>Abstract</summary>
+        <p>{{ pub.abstract }}</p>
+      </details>
+    </div>
+    {% endif %}
+
+    <div class="publication-links">
+      {% if pub.url %}
+      <a href="{{ pub.url }}" target="_blank" class="pub-link pub-link-paper">
+        <i class="fas fa-external-link-alt"></i> Paper
+      </a>
+      {% endif %}
+      {% if pub.pdf_url %}
+      <a href="{{ pub.pdf_url }}" target="_blank" class="pub-link pub-link-pdf">
+        <i class="fas fa-file-pdf"></i> PDF
+      </a>
+      {% endif %}
+      {% if pub.slides_url %}
+      <a href="{{ pub.slides_url }}" target="_blank" class="pub-link pub-link-slides">
+        <i class="fas fa-presentation"></i> Slides
+      </a>
+      {% endif %}
+      {% if pub.code_url %}
+      <a href="{{ pub.code_url }}" target="_blank" class="pub-link pub-link-code">
+        <i class="fas fa-code"></i> Code
+      </a>
+      {% endif %}
       {% if include.show_bibtex %}
-      <div class="publication-bibtex" id="bibtex-{{ pub.id }}" style="display: none;">
-        {% assign open_brace = "{" %}
-        {% assign close_brace = "}" %}
-        <pre><code>@{{ pub.type }}{{ open_brace }}{{ pub.bibtex_key }},
+      <button class="pub-link pub-link-bibtex" onclick="toggleBibtex('{{ pub.id }}')">
+        <i class="fas fa-quote-right"></i> BibTeX
+      </button>
+      {% endif %}
+    </div>
+
+    {% if include.show_bibtex %}
+    <div class="publication-bibtex" id="bibtex-{{ pub.id }}" style="display: none;">
+      {% assign open_brace = "{" %}
+      {% assign close_brace = "}" %}
+      <pre><code>@{{ pub.type }}{{ open_brace }}{{ pub.bibtex_key }},
   title = {{ open_brace }}{{ pub.title }}{{ close_brace }},
   author = {{ open_brace }}{{ pub.authors }}{{ close_brace }},
   {% if pub.type == 'journal' %}journal = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% else %}booktitle = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% endif %},
-  year = {{ open_brace }}{{ pub.year }}{{ close_brace }},
-  {% if pub.address %}address = {{ open_brace }}{{ pub.address }}{{ close_brace }},{% endif %}
-  {% if pub.volume %}volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }},{% endif %}
-  {% if pub.pages %}pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }},{% endif %}
-  {% if pub.doi %}doi = {{ open_brace }}{{ pub.doi }}{{ close_brace }},{% endif %}
-  {% if pub.url %}url = {{ open_brace }}{{ pub.url }}{{ close_brace }},{% endif %}
+  year = {{ open_brace }}{{ pub.year }}{{ close_brace }},{% if pub.address %}
+  address = {{ open_brace }}{{ pub.address }}{{ close_brace }},{% endif %}{% if pub.volume %}
+  volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }},{% endif %}{% if pub.pages %}
+  pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }},{% endif %}{% if pub.doi %}
+  doi = {{ open_brace }}{{ pub.doi }}{{ close_brace }},{% endif %}{% if pub.url %}
+  url = {{ open_brace }}{{ pub.url }}{{ close_brace }},{% endif %}
 {{ close_brace }}</code></pre>
-      </div>
-      {% endif %}
     </div>
+    {% endif %}
+  </div>
   {% endfor %}
 </div>
 
 {% if include.show_bibtex %}
 <script>
-function toggleBibtex(pubId) {
-  const bibtexDiv = document.getElementById('bibtex-' + pubId);
-  if (bibtexDiv.style.display === 'none') {
-    bibtexDiv.style.display = 'block';
-  } else {
-    bibtexDiv.style.display = 'none';
+  function toggleBibtex(pubId) {
+    const bibtexDiv = document.getElementById('bibtex-' + pubId);
+    if (bibtexDiv.style.display === 'none') {
+      bibtexDiv.style.display = 'block';
+    } else {
+      bibtexDiv.style.display = 'none';
+    }
   }
-}
 </script>
 {% endif %}
