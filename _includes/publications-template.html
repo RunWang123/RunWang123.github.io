@@ -78,8 +78,10 @@
   author = {{ open_brace }}{{ pub.authors }}{{ close_brace }},
   {% if pub.type == 'journal' %}journal = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% else %}booktitle = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% endif %},
   year = {{ open_brace }}{{ pub.year }}{{ close_brace }},
+  {% if pub.address %}address = {{ open_brace }}{{ pub.address }}{{ close_brace }},{% endif %}
   {% if pub.volume %}volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }},{% endif %}
   {% if pub.pages %}pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }},{% endif %}
+  {% if pub.doi %}doi = {{ open_brace }}{{ pub.doi }}{{ close_brace }},{% endif %}
   {% if pub.url %}url = {{ open_brace }}{{ pub.url }}{{ close_brace }},{% endif %}
 {{ close_brace }}</code></pre>
       </div>
