@@ -56,6 +56,18 @@
       "highlights": []
     },
     {
+      "company": "Ohio State University",
+      "position": "Graduate Research Associate",
+      "website": "",
+      "startDate": "2024-05",
+      "endDate": "2025-08",
+      "summary": "Columbus, OH",
+      "highlights": [
+        "Designed machine learning models and time series algorithms to improve the performance of mobile and edge devices",
+        "Published one paper accepted to IWQoS 2025 and one paper accepted to INFOCOM 2026"
+      ]
+    },
+    {
       "company": "MiSUMi & Carnegie Mellon University",
       "position": "Research Assistant",
       "website": "",
@@ -125,18 +137,40 @@
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": ["Python", "Java", "C/C++"]
+      "keywords": [
+        "Python",
+        "Java",
+        "C/C++"
+      ]
     },
     {
       "name": "Frameworks/Technologies",
-      "keywords": ["TensorFlow", "PyTorch", "Wireshark", "Docker", "AWS", "Azure", "Terraform", "Kubernetes", "Maven", "Helm", "Kafka", "Git"]
+      "keywords": [
+        "TensorFlow",
+        "PyTorch",
+        "Wireshark",
+        "Docker",
+        "AWS",
+        "Azure",
+        "Terraform",
+        "Kubernetes",
+        "Maven",
+        "Helm",
+        "Kafka",
+        "Git"
+      ]
     }
   ],
   "languages": [],
   "interests": [
     {
       "name": "Research Interests",
-      "keywords": ["3D Vision", "Generative Model", "Trustworthy AI", "AI Security for Autonomous Vehicles"]
+      "keywords": [
+        "3D Vision",
+        "Generative Model",
+        "Trustworthy AI",
+        "AI Security for Autonomous Vehicles"
+      ]
     }
   ],
   "references": [],
