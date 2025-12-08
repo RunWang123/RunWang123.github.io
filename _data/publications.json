@@ -1,6 +1,38 @@
 {
     "publications": [
         {
+            "id": "infocom-2026",
+            "title": "Lightweight Detection of Abnormal Battery Drain Induced by Network Operations of Mobile Apps",
+            "authors": "Run Wang, Marco Brocanelli, Xiaorui Wang",
+            "venue": "IEEE INFOCOM 2026",
+            "venue_short": "INFOCOM",
+            "proceedings": "Proceedings of IEEE INFOCOM 2026",
+            "date": "2026",
+            "year": "2026",
+            "month": "",
+            "type": "conference",
+            "status": "accepted",
+            "url": "",
+            "doi": "",
+            "address": "",
+            "pages": "",
+            "pdf_url": "",
+            "slides_url": "",
+            "code_url": "",
+            "bibtex_key": "wang2026battery",
+            "abstract": "",
+            "keywords": [
+                "battery drain",
+                "network operations",
+                "mobile applications",
+                "anomaly detection"
+            ],
+            "featured": true,
+            "award": "",
+            "note": "Accepted",
+            "citation": ""
+        },
+        {
             "id": "mapp-2025",
             "title": "Mapp: Predictive UI View Pre-Caching for Improving the Responsiveness of Mobile Apps",
             "authors": "Run Wang, Zach Herman, Marco Brocanelli, Xiaorui Wang",
