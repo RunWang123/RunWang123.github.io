@@ -19,11 +19,15 @@ Research Interests
 
 Recent Highlights
 ======
-* Become a PhD student at Clemson University (Co-advised by Dr. [Siyu Huang](https://siyuhuang.github.io/) and Dr. [Mert D. Pesé](https://mpese.com/))
-
+{% assign highlights = site.data.highlights.highlights | sort: "timestamp" | reverse %}
+{% for highlight in highlights %}
+{% if highlight.type == "news" %}* [{{ highlight.timestamp | date: "%m/%d/%Y" }}] {{ highlight.title }}{% if highlight.description != "" %} ({{ highlight.description }}){% endif %}
+{% elsif highlight.type == "publication" %}
 {% assign publications = site.data.publications.publications %}
 {% for pub in publications %}
-{% if pub.featured %}* **{{ pub.title }}**, published in {{ pub.venue_short }}, {{ pub.month }} {{ pub.year }}{% if pub.note != "" %} ({{ pub.note }}){% endif %}
+{% if pub.id == highlight.publication_id %}* [{{ highlight.timestamp | date: "%m/%d/%Y" }}] **{{ pub.title }}**, published in {{ pub.venue_short }}{% if pub.month != "" %}, {{ pub.month }}{% endif %} {{ pub.year }}{% if pub.note != "" %} ({{ pub.note }}){% endif %}
+{% endif %}
+{% endfor %}
 {% endif %}
 {% endfor %}
 
