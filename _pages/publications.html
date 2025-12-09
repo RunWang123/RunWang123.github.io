@@ -5,15 +5,14 @@ permalink: /publications/
 author_profile: true
 ---
 
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/publications.css">`r`n\u003clink rel=\"stylesheet\" href=\"{{ site.baseurl }}/assets/css/dark-mode.css\"\u003e
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/publications.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/dark-mode.css">
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+<div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar
+    profile</a>.</div>
 {% endif %}
 <br><br>
 {% include base_path %}
 
 {% include publications-template.html show_abstracts=true show_bibtex=true %}
-
-
-
