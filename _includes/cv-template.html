@@ -177,7 +177,7 @@
           <div class="cv-item-date">{{ publication.year }}</div>
         </div>
         <div class="cv-item-content">
-          <div class="cv-item-subtitle">{{ publication.venue }}</div>
+          <div class="cv-item-subtitle">{{ publication.venue }}{% if publication.acceptance_rate %} (Acceptance Rate: {{ publication.acceptance_rate }}){% endif %}</div>
           <div class="cv-item-detail">{{ publication.authors }}{% if publication.note %} ({{ publication.note }}){% endif %}</div>
           {% if publication.url %}
           <div class="cv-item-detail">

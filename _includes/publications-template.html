@@ -30,6 +30,7 @@
 
     <div class="publication-venue">
       <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
+      {% if pub.acceptance_rate %}<br><span class="publication-acceptance-rate">Acceptance Rate: {{ pub.acceptance_rate }}</span>{% endif %}
     </div>
 
     {% if pub.abstract and include.show_abstracts %}

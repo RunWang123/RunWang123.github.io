@@ -30,6 +30,7 @@
             "featured": true,
             "award": "",
             "note": "Accepted",
+            "acceptance_rate": "329/1740 (18.91%)",
             "citation": ""
         },
         {
@@ -72,6 +73,7 @@
             "featured": true,
             "award": "",
             "note": "Accepted",
+            "acceptance_rate": "81/326 (24.8%)",
             "citation": "R. Wang, Z. Herman, M. Brocanelli and X. Wang, \"Mapp: Predictive UI View Pre-Caching for Improving the Responsiveness of Mobile Apps,\" 2025 IEEE/ACM 33rd International Symposium on Quality of Service (IWQoS), Gold Coast, Australia, 2025, pp. 1-10, doi: 10.1109/IWQoS65803.2025.11265768."
         },
         {
