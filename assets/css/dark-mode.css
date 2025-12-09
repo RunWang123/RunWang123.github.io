@@ -1,164 +1,236 @@
-/* Comprehensive Dark Mode Support for Publications and CV Pages */
+/* Dark Mode Support with CSS Variables for Easy Maintenance */
 @media (prefers-color-scheme: dark) {
+    :root {
+        /* Color Palette - Define once, use everywhere */
+        --dm-text-primary: #f0f0f0;
+        --dm-text-secondary: #d0d0d0;
+        --dm-text-tertiary: #c8c8c8;
+        --dm-text-muted: #c0c0c0;
 
-    /* Page content wrapper */
-    .page__content {
-        background-color: transparent !important;
+        --dm-link: #a0c7ff;
+        --dm-link-hover: #b8d4ff;
+
+        --dm-bg-primary: transparent;
+        --dm-bg-hover: rgba(255, 255, 255, 0.08);
+        --dm-bg-featured: rgba(102, 126, 234, 0.15);
+        --dm-bg-card: #2d2d2d;
+        --dm-bg-button: #353535;
+        --dm-bg-button-hover: #454545;
+        --dm-bg-skill: rgba(255, 255, 255, 0.15);
+
+        --dm-border-primary: #555;
+        --dm-border-secondary: #666;
+        --dm-border-tertiary: #777;
+        --dm-border-featured: rgba(102, 126, 234, 0.4);
+
+        --dm-accent-blue: #4a7fd6;
     }
 
-    /* Publications Page Dark Mode */
+    /* ========================================
+     GLOBAL OVERRIDES
+     ======================================== */
+    body,
+    #main,
+    .page,
+    .page__inner-wrap,
+    .archive,
+    .layout--archive,
+    .page__content,
+    .archive__item {
+        background-color: var(--dm-bg-primary) !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--dm-text-primary) !important;
+    }
+
+    .page__content p,
+    .page__content li,
+    .page__content span,
+    .cv-container p,
+    .cv-container li,
+    .cv-container span {
+        color: var(--dm-text-secondary) !important;
+    }
+
+    .page__content a,
+    .publications-container .wordwrap a {
+        color: var(--dm-link) !important;
+        border-bottom-color: var(--dm-link) !important;
+    }
+
+    .page__content a:hover,
+    .publications-container .wordwrap a:hover {
+        color: var(--dm-link-hover) !important;
+    }
+
+    /* ========================================
+     PUBLICATIONS PAGE
+     ======================================== */
     .publications-container {
-        background-color: transparent !important;
+        background-color: var(--dm-bg-primary) !important;
     }
 
+    .publications-container h2,
+    .page__content h2 {
+        color: var(--dm-text-primary) !important;
+        border-bottom-color: var(--dm-link) !important;
+    }
+
+    .publications-container .wordwrap {
+        color: var(--dm-text-tertiary) !important;
+        border-bottom-color: var(--dm-border-primary) !important;
+    }
+
+    /* Publication Items */
     .publication-item {
-        border-bottom-color: #444 !important;
-        background-color: transparent !important;
+        border-bottom-color: var(--dm-border-primary) !important;
+        background-color: var(--dm-bg-primary) !important;
     }
 
     .publication-item:hover {
-        background-color: rgba(255, 255, 255, 0.05) !important;
+        background-color: var(--dm-bg-hover) !important;
     }
 
     .publication-item.featured {
-        background-color: rgba(102, 126, 234, 0.1) !important;
-        border-color: rgba(102, 126, 234, 0.3) !important;
+        background-color: var(--dm-bg-featured) !important;
+        border-color: var(--dm-border-featured) !important;
     }
 
     .publication-venue-badge {
-        background-color: #2563eb !important;
+        background-color: var(--dm-accent-blue) !important;
+        color: #ffffff !important;
     }
 
     .publication-title,
     .publication-title a {
-        color: #e0e0e0 !important;
+        color: var(--dm-text-primary) !important;
     }
 
     .publication-title a:hover {
-        color: #88b3ff !important;
-        border-bottom-color: #88b3ff !important;
+        color: var(--dm-link-hover) !important;
+        border-bottom-color: var(--dm-link-hover) !important;
     }
 
     .publication-authors,
     .publication-venue,
     .publication-year {
-        color: #b0b0b0 !important;
+        color: var(--dm-text-tertiary) !important;
     }
 
+    /* Abstract Section */
     .publication-abstract {
-        border-top-color: #444 !important;
+        border-top-color: var(--dm-border-primary) !important;
     }
 
     .publication-abstract summary {
-        color: #88b3ff !important;
-        border-bottom-color: #88b3ff !important;
+        color: var(--dm-link) !important;
+        border-bottom-color: var(--dm-link) !important;
     }
 
     .publication-abstract summary:hover {
-        color: #a0c7ff !important;
+        color: var(--dm-link-hover) !important;
     }
 
     .publication-abstract p {
-        color: #c0c0c0 !important;
-        border-top-color: #444 !important;
+        color: var(--dm-text-secondary) !important;
+        border-top-color: var(--dm-border-primary) !important;
     }
 
+    /* BibTeX Section */
     .publication-bibtex {
-        background-color: #2a2a2a !important;
-        border-color: #444 !important;
+        background-color: var(--dm-bg-card) !important;
+        border-color: var(--dm-border-primary) !important;
     }
 
     .publication-bibtex pre,
     .publication-bibtex code {
-        color: #e0e0e0 !important;
+        color: #e8e8e8 !important;
+        background: transparent !important;
     }
 
+    /* Publication Links/Buttons */
     .pub-link {
-        background-color: #2a2a2a !important;
-        border-color: #555 !important;
-        color: #b0b0b0 !important;
+        background-color: var(--dm-bg-button) !important;
+        border-color: var(--dm-border-secondary) !important;
+        color: var(--dm-text-tertiary) !important;
     }
 
     .pub-link:hover {
-        background-color: #3a3a3a !important;
-        border-color: #666 !important;
-        color: #e0e0e0 !important;
+        background-color: var(--dm-bg-button-hover) !important;
+        border-color: var(--dm-border-tertiary) !important;
+        color: var(--dm-text-primary) !important;
     }
 
-    .publications-container h2 {
-        color: #e0e0e0 !important;
-        border-bottom-color: #88b3ff !important;
-    }
-
-    .publications-container .wordwrap {
-        color: #b0b0b0 !important;
-        border-bottom-color: #444 !important;
-    }
-
-    .publications-container .wordwrap a {
-        color: #88b3ff !important;
-        border-bottom-color: #88b3ff !important;
-    }
-
-    /* CV Page Dark Mode */
+    /* ========================================
+     CV PAGE
+     ======================================== */
     .cv-container {
-        background-color: transparent !important;
+        background-color: var(--dm-bg-primary) !important;
     }
 
-    .cv-header-nav {
-        border-bottom-color: #444 !important;
+    .cv-header-nav,
+    .cv-download-header {
+        border-bottom-color: var(--dm-border-primary) !important;
+        border-top-color: var(--dm-border-primary) !important;
     }
 
+    /* CV Headers */
     .cv-header h1,
     .cv-section h2,
     .cv-item-title,
     .cv-skill-category h3 {
-        color: #e0e0e0 !important;
+        color: var(--dm-text-primary) !important;
     }
 
     .cv-section h2 {
-        border-bottom-color: #88b3ff !important;
+        border-bottom-color: var(--dm-link) !important;
     }
 
     .cv-header h2 {
-        color: #b0b0b0 !important;
+        color: var(--dm-text-tertiary) !important;
     }
 
+    /* CV Content */
     .cv-contact-item,
     .cv-item-subtitle,
     .cv-highlights li {
-        color: #c0c0c0 !important;
+        color: var(--dm-text-secondary) !important;
     }
 
     .cv-item-date,
     .cv-item-detail,
     .cv-last-updated {
-        color: #a0a0a0 !important;
+        color: var(--dm-text-muted) !important;
     }
 
     .cv-item {
-        border-left-color: #444 !important;
+        border-left-color: var(--dm-border-primary) !important;
     }
 
+    /* CV Skills */
     .cv-skill-list li {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: #c0c0c0 !important;
+        background-color: var(--dm-bg-skill) !important;
+        color: var(--dm-text-secondary) !important;
     }
 
+    /* CV Footer */
     .cv-download-footer {
-        background-color: rgba(255, 255, 255, 0.02) !important;
-        border-top-color: #444 !important;
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border-top-color: var(--dm-border-primary) !important;
     }
 
-    .cv-download-header {
-        border-top-color: #444 !important;
-    }
-
+    /* CV Links */
     .cv-profile-link {
-        color: #88b3ff !important;
+        color: var(--dm-link) !important;
     }
 
     .cv-profile-link:hover {
-        color: #a0c7ff !important;
+        color: var(--dm-link-hover) !important;
     }
 }
