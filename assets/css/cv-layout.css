@@ -177,6 +177,9 @@
 @media (max-width: 768px) {
   .cv-container {
     padding: 0.8rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   .cv-item-header {
@@ -196,6 +199,36 @@
 
   .cv-skills {
     grid-template-columns: 1fr;
+  }
+  
+  /* Force dark text colors on mobile to prevent light grey appearance */
+  .cv-header h1,
+  .cv-section h2,
+  .cv-item-title,
+  .cv-skill-category h3 {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+  }
+  
+  .cv-header h2,
+  .cv-item-subtitle {
+    color: #555 !important;
+    -webkit-text-fill-color: #555 !important;
+  }
+  
+  .cv-contact-item,
+  .cv-item-detail,
+  .cv-item-date,
+  .cv-highlights li,
+  .cv-skill-list li {
+    color: #555 !important;
+    -webkit-text-fill-color: #555 !important;
+  }
+  
+  .cv-container p,
+  .cv-container li {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
   }
 }
 
