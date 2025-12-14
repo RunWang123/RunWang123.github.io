@@ -106,10 +106,17 @@ html[data-theme="dark"] .publications-container h3,
 html[data-theme="dark"] .cv-header h1,
 html[data-theme="dark"] .cv-section h2,
 html[data-theme="dark"] .cv-item-title,
-html[data-theme="dark"] .cv-skill-category h3,
-html[data-theme="dark"] .publication-title,
-html[data-theme="dark"] .publication-title a {
+html[data-theme="dark"] .cv-skill-category h3 {
     color: #ffffff !important;
+}
+
+/* Publication titles - must be white, not link color */
+html[data-theme="dark"] .publication-title,
+html[data-theme="dark"] .publication-title a,
+html[data-theme="dark"] .publication-title a:hover,
+html[data-theme="dark"] .publication-title a:visited {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 
 /* Body text and paragraphs - white */
