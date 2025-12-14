@@ -1,0 +1,193 @@
+/* Common Styles for All Custom Pages (Publications, CV, etc.) */
+/* This file provides consistent mobile and dark mode support across custom pages */
+
+/* ============================================================================
+   MOBILE RESPONSIVE STYLES - Applied to all pages
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  /* Ensure dark, readable text on mobile devices */
+  /* Prevents mobile browsers from applying light grey color adjustments */
+  
+  body .publications-container,
+  body .cv-container,
+  body.cv-layout .cv-container {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+  }
+  
+  /* Force dark text colors on all custom page content */
+  body.cv-layout .cv-container *,
+  body.cv-layout .cv-container,
+  .publications-container *,
+  .publications-container,
+  .cv-container *,
+  .cv-container {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* Headings and titles - darkest */
+  body.cv-layout .cv-header h1,
+  body.cv-layout .cv-section h2,
+  body.cv-layout .cv-item-title,
+  body.cv-layout .cv-skill-category h3,
+  .publications-container h2,
+  .publications-container .publication-title,
+  .publications-container .publication-title a,
+  .cv-header h1,
+  .cv-section h2,
+  .cv-item-title,
+  .cv-skill-category h3 {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* Secondary text - medium grey */
+  body.cv-layout .cv-header h2,
+  body.cv-layout .cv-item-subtitle,
+  body.cv-layout .cv-contact-item,
+  body.cv-layout .cv-item-detail,
+  body.cv-layout .cv-item-date,
+  .publication-authors,
+  .publication-authors .author-name,
+  .publication-authors .author-main,
+  .publication-venue,
+  .publication-year,
+  .cv-header h2,
+  .cv-item-subtitle,
+  .cv-contact-item,
+  .cv-item-detail,
+  .cv-item-date {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+  }
+  
+  /* Body text and lists */
+  body.cv-layout .cv-highlights li,
+  body.cv-layout .cv-skill-list li,
+  .publication-abstract p,
+  .cv-highlights li,
+  .cv-skill-list li {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* Links and buttons */
+  .pub-link,
+  body.cv-layout .cv-profile-link {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+  }
+}
+
+/* ============================================================================
+   DARK MODE STYLES - Using html[data-theme="dark"]
+   ============================================================================ */
+/* These styles are aligned with the main theme in _sass/theme/_dark.scss */
+/* Main theme colors: text=#ffffff, link=#0ea1c5, background=#474747 */
+
+/* Global text and background colors */
+html[data-theme="dark"] .publications-container,
+html[data-theme="dark"] .cv-container,
+html[data-theme="dark"] body.cv-layout,
+html[data-theme="dark"] body.cv-layout .cv-container {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+/* All headings - pure white */
+html[data-theme="dark"] .publications-container h1,
+html[data-theme="dark"] .publications-container h2,
+html[data-theme="dark"] .publications-container h3,
+html[data-theme="dark"] .cv-header h1,
+html[data-theme="dark"] .cv-section h2,
+html[data-theme="dark"] .cv-item-title,
+html[data-theme="dark"] .cv-skill-category h3,
+html[data-theme="dark"] .publication-title,
+html[data-theme="dark"] .publication-title a {
+    color: #ffffff !important;
+}
+
+/* Body text and paragraphs - white */
+html[data-theme="dark"] .publications-container p,
+html[data-theme="dark"] .cv-container p,
+html[data-theme="dark"] .publication-abstract p,
+html[data-theme="dark"] .cv-highlights li,
+html[data-theme="dark"] .cv-item-subtitle {
+    color: #ffffff !important;
+}
+
+/* Secondary/meta text - light grey */
+html[data-theme="dark"] .publication-authors,
+html[data-theme="dark"] .publication-venue,
+html[data-theme="dark"] .publication-year,
+html[data-theme="dark"] .cv-contact-item,
+html[data-theme="dark"] .cv-item-date,
+html[data-theme="dark"] .cv-item-detail,
+html[data-theme="dark"] .cv-last-updated {
+    color: #bdc1c4 !important;
+}
+
+/* Links - cyan matching main theme */
+html[data-theme="dark"] a,
+html[data-theme="dark"] .publication-abstract summary,
+html[data-theme="dark"] .cv-profile-link,
+html[data-theme="dark"] .publications-container .wordwrap a {
+    color: #0ea1c5 !important;
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] .publication-abstract summary:hover,
+html[data-theme="dark"] .cv-profile-link:hover {
+    color: #0b7c9a !important;
+}
+
+/* Borders */
+html[data-theme="dark"] .publication-item,
+html[data-theme="dark"] .cv-section h2,
+html[data-theme="dark"] .cv-header,
+html[data-theme="dark"] .cv-item {
+    border-color: #bdc1c4 !important;
+}
+
+html[data-theme="dark"] .publication-abstract summary {
+    border-bottom-color: #0ea1c5 !important;
+}
+
+/* Backgrounds */
+html[data-theme="dark"] .publication-item:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .publication-bibtex,
+html[data-theme="dark"] .cv-skill-list li {
+    background-color: #5a5a5a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .pub-link {
+    background-color: #5a5a5a !important;
+    border-color: #7a7a7a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .pub-link:hover {
+    background-color: #6a6a6a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .publication-venue-badge {
+    background-color: #0ea1c5 !important;
+    color: #ffffff !important;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+/* Prevent text color inheritance issues */
+.force-theme-colors * {
+    color: inherit !important;
+}

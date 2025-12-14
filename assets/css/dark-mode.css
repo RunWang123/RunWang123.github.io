@@ -1,41 +1,8 @@
-/* Dark Mode Support - Targeting data-theme="dark" attribute set by JS */
-/* These colors are aligned with the main theme in _sass/theme/_dark.scss */
+/* Dark Mode Support - Extended from main theme */
+/* Most dark mode styles are now in common-styles.css */
+/* This file only contains page-specific adjustments */
 
-/* 1. Define Variables for Dark Mode Scope */
-html[data-theme="dark"] {
-    /* Text Colors - Matching main theme exactly */
-    --dm-text-primary: #ffffff;
-    --dm-text-secondary: #ffffff;
-    --dm-text-tertiary: #bdc1c4;
-    --dm-text-muted: #bdc1c4;
-
-    /* Links - Matching main theme exactly */
-    --dm-link: #0ea1c5;
-    --dm-link-hover: #0b7c9a;
-    --dm-link-visited: #3ebdd6;
-
-    /* Backgrounds */
-    --dm-bg-primary: #474747;
-    /* Fallback/Base dark color */
-    --dm-bg-transparent: transparent;
-    --dm-bg-hover: rgba(255, 255, 255, 0.08);
-    --dm-bg-featured: rgba(14, 161, 197, 0.15);
-    --dm-bg-card: #5a5a5a;
-    --dm-bg-button: #5a5a5a;
-    --dm-bg-button-hover: #6a6a6a;
-    --dm-bg-skill: rgba(255, 255, 255, 0.1);
-
-    /* Borders */
-    --dm-border-primary: #bdc1c4;
-    --dm-border-secondary: #7a7a7a;
-    --dm-border-featured: rgba(14, 161, 197, 0.4);
-
-    /* Accents */
-    --dm-accent-blue: #0ea1c5;
-    --dm-badge-bg: #0ea1c5;
-}
-
-/* 2. Global Overrides */
+/* Global Overrides for Main Layout */
 html[data-theme="dark"] body,
 html[data-theme="dark"] #main,
 html[data-theme="dark"] .page,
@@ -44,171 +11,24 @@ html[data-theme="dark"] .archive,
 html[data-theme="dark"] .layout--archive,
 html[data-theme="dark"] .page__content,
 html[data-theme="dark"] .archive__item {
-    background-color: var(--dm-bg-transparent) !important;
-    color: var(--dm-text-primary) !important;
-}
-
-html[data-theme="dark"] h1,
-html[data-theme="dark"] h2,
-html[data-theme="dark"] h3,
-html[data-theme="dark"] h4,
-html[data-theme="dark"] h5,
-html[data-theme="dark"] h6 {
-    color: var(--dm-text-primary) !important;
-}
-
-html[data-theme="dark"] p,
-html[data-theme="dark"] li,
-html[data-theme="dark"] span {
-    color: var(--dm-text-secondary);
-}
-
-html[data-theme="dark"] a {
-    color: var(--dm-link) !important;
-}
-
-html[data-theme="dark"] a:hover {
-    color: var(--dm-link-hover) !important;
-}
-
-/* 3. Publications Page Overrides */
-html[data-theme="dark"] .publications-container {
-    background-color: var(--dm-bg-transparent) !important;
-}
-
-html[data-theme="dark"] .publications-container h2 {
-    color: var(--dm-text-primary) !important;
-    border-bottom-color: var(--dm-link) !important;
-}
-
-html[data-theme="dark"] .publications-container .wordwrap {
-    color: var(--dm-text-tertiary) !important;
-    border-bottom-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .publication-item {
-    border-bottom-color: var(--dm-border-primary) !important;
-    background-color: var(--dm-bg-transparent) !important;
-}
-
-html[data-theme="dark"] .publication-item:hover {
-    background-color: var(--dm-bg-hover) !important;
-}
-
-html[data-theme="dark"] .publication-item.featured {
-    background-color: var(--dm-bg-featured) !important;
-    border-color: var(--dm-border-featured) !important;
-}
-
-html[data-theme="dark"] .publication-venue-badge {
-    background-color: var(--dm-badge-bg) !important;
+    background-color: transparent !important;
     color: #ffffff !important;
 }
 
-html[data-theme="dark"] .publication-title,
-html[data-theme="dark"] .publication-title a {
-    color: var(--dm-text-primary) !important;
-}
-
-html[data-theme="dark"] .publication-authors,
-html[data-theme="dark"] .publication-venue,
-html[data-theme="dark"] .publication-year {
-    color: var(--dm-text-tertiary) !important;
-}
-
-html[data-theme="dark"] .publication-abstract {
-    border-top-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .publication-abstract summary {
-    color: var(--dm-link) !important;
-    border-bottom-color: var(--dm-link) !important;
-}
-
-html[data-theme="dark"] .publication-abstract p {
-    color: var(--dm-text-secondary) !important;
-    border-top-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .publication-bibtex {
-    background-color: var(--dm-bg-card) !important;
-    border-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .publication-bibtex pre,
-html[data-theme="dark"] .publication-bibtex code {
-    color: var(--dm-text-secondary) !important;
-    background: transparent !important;
-}
-
-html[data-theme="dark"] .pub-link {
-    background-color: var(--dm-bg-button) !important;
-    border-color: var(--dm-border-secondary) !important;
-    color: var(--dm-text-tertiary) !important;
-}
-
-html[data-theme="dark"] .pub-link:hover {
-    background-color: var(--dm-bg-button-hover) !important;
-    border-color: var(--dm-border-primary) !important;
-    color: var(--dm-text-primary) !important;
-}
-
-/* 4. CV Page Overrides */
-html[data-theme="dark"] .cv-container {
-    background-color: var(--dm-bg-transparent) !important;
-}
-
-html[data-theme="dark"] .cv-header-nav,
-html[data-theme="dark"] .cv-download-header {
-    border-bottom-color: var(--dm-border-primary) !important;
-    border-top-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .cv-header h1,
-html[data-theme="dark"] .cv-section h2,
-html[data-theme="dark"] .cv-item-title,
-html[data-theme="dark"] .cv-skill-category h3 {
-    color: var(--dm-text-primary) !important;
-}
-
-html[data-theme="dark"] .cv-section h2 {
-    border-bottom-color: var(--dm-link) !important;
-}
-
-html[data-theme="dark"] .cv-header h2 {
-    color: var(--dm-text-tertiary) !important;
-}
-
-html[data-theme="dark"] .cv-contact-item,
-html[data-theme="dark"] .cv-item-subtitle,
-html[data-theme="dark"] .cv-highlights li {
-    color: var(--dm-text-secondary) !important;
-}
-
-html[data-theme="dark"] .cv-item-date,
-html[data-theme="dark"] .cv-item-detail,
-html[data-theme="dark"] .cv-last-updated {
-    color: var(--dm-text-muted) !important;
-}
-
-html[data-theme="dark"] .cv-item {
-    border-left-color: var(--dm-border-primary) !important;
-}
-
-html[data-theme="dark"] .cv-skill-list li {
-    background-color: var(--dm-bg-skill) !important;
-    color: var(--dm-text-secondary) !important;
+/* Page-specific adjustments */
+html[data-theme="dark"] .publication-item.featured {
+    background-color: rgba(14, 161, 197, 0.15) !important;
+    border-color: rgba(14, 161, 197, 0.4) !important;
 }
 
 html[data-theme="dark"] .cv-download-footer {
     background-color: rgba(255, 255, 255, 0.03) !important;
-    border-top-color: var(--dm-border-primary) !important;
 }
 
-html[data-theme="dark"] .cv-profile-link {
-    color: var(--dm-link) !important;
+html[data-theme="dark"] .cv-header-nav {
+    border-bottom-color: #bdc1c4 !important;
 }
 
-html[data-theme="dark"] .cv-profile-link:hover {
-    color: var(--dm-link-hover) !important;
+html[data-theme="dark"] .cv-download-header {
+    border-top-color: #bdc1c4 !important;
 }
