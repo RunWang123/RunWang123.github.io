@@ -99,24 +99,23 @@ html[data-theme="dark"] body.cv-layout .cv-container {
     color: #ffffff !important;
 }
 
-/* All headings - pure white */
+/* All headings - pure white (matching main page) */
 html[data-theme="dark"] .publications-container h1,
 html[data-theme="dark"] .publications-container h2,
 html[data-theme="dark"] .publications-container h3,
 html[data-theme="dark"] .cv-header h1,
 html[data-theme="dark"] .cv-section h2,
 html[data-theme="dark"] .cv-item-title,
-html[data-theme="dark"] .cv-skill-category h3 {
+html[data-theme="dark"] .cv-skill-category h3,
+html[data-theme="dark"] .publication-title,
+html[data-theme="dark"] .publication-title a {
     color: #ffffff !important;
 }
 
-/* Publication titles - must be white, not link color */
-html[data-theme="dark"] .publication-title,
-html[data-theme="dark"] .publication-title a,
-html[data-theme="dark"] .publication-title a:hover,
-html[data-theme="dark"] .publication-title a:visited {
+/* Publication title links should be white, not cyan */
+html[data-theme="dark"] .publication-title a:hover {
     color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+    text-decoration: underline;
 }
 
 /* Body text and paragraphs - white */
@@ -140,16 +139,19 @@ html[data-theme="dark"] .cv-last-updated {
 }
 
 /* Links - cyan matching main theme */
-html[data-theme="dark"] a,
+/* BUT publication titles should stay white */
 html[data-theme="dark"] .publication-abstract summary,
 html[data-theme="dark"] .cv-profile-link,
 html[data-theme="dark"] .publications-container .wordwrap a {
     color: #0ea1c5 !important;
 }
 
-html[data-theme="dark"] a:hover,
 html[data-theme="dark"] .publication-abstract summary:hover,
 html[data-theme="dark"] .cv-profile-link:hover {
+    color: #0b7c9a !important;
+}
+
+html[data-theme="dark"] .publications-container .wordwrap a:hover {
     color: #0b7c9a !important;
 }
 
