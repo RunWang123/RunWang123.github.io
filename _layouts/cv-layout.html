@@ -25,8 +25,12 @@ layout: compress
   {% include masthead.html %}
 
   <div id="main" role="main">
-    <div class="container">
-      {{ content }}
+    {% include sidebar.html %}
+    
+    <div class="archive">
+      <div class="container">
+        {{ content }}
+      </div>
     </div>
   </div>
 
