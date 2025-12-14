@@ -212,6 +212,40 @@
   color: #666;
 }
 
+/* Mobile Styles - Ensure dark, readable text */
+@media (max-width: 768px) {
+  .cv-container {
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Force dark text colors on mobile */
+  .cv-container,
+  .cv-container p,
+  .cv-container li,
+  .cv-item-title,
+  .cv-item-summary {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+  }
+  
+  .cv-item-date,
+  .cv-item-subtitle,
+  .cv-language-fluency,
+  .cv-references {
+    color: #555 !important;
+    -webkit-text-fill-color: #555 !important;
+  }
+  
+  .cv-header h1,
+  .cv-section h2 {
+    color: #2a7ae2 !important;
+    -webkit-text-fill-color: #2a7ae2 !important;
+  }
+}
+
 /* Print Styles */
 @media print {
   .cv-container {

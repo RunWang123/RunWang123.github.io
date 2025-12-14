@@ -398,6 +398,54 @@
     font-size: 0.7rem;
     padding: 0.3rem 0.6rem;
   }
+  
+  /* Ensure dark, readable text on mobile */
+  .publications-container {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  .publication-title,
+  .publication-title a {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  .publication-authors {
+    color: #2d3748 !important;
+    -webkit-text-fill-color: #2d3748 !important;
+  }
+  
+  .publication-authors .author-name {
+    color: #1a202c !important;
+    -webkit-text-fill-color: #1a202c !important;
+  }
+  
+  .publication-authors .author-main {
+    color: #1a202c !important;
+    -webkit-text-fill-color: #1a202c !important;
+  }
+  
+  .publication-venue {
+    color: #2d3748 !important;
+    -webkit-text-fill-color: #2d3748 !important;
+  }
+  
+  .publication-year {
+    color: #2d3748 !important;
+    -webkit-text-fill-color: #2d3748 !important;
+  }
+  
+  .publication-abstract p {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  .pub-link {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+  }
 }
 
 /* Publications page specific styles */
