@@ -1,36 +1,38 @@
 /* Dark Mode Support - Targeting data-theme="dark" attribute set by JS */
+/* These colors are aligned with the main theme in _sass/theme/_dark.scss */
 
 /* 1. Define Variables for Dark Mode Scope */
 html[data-theme="dark"] {
-    /* Text Colors - High Contrast */
-    --dm-text-primary: #f0f0f0;
-    --dm-text-secondary: #e0e0e0;
-    --dm-text-tertiary: #d0d0d0;
-    --dm-text-muted: #c0c0c0;
+    /* Text Colors - Matching main theme exactly */
+    --dm-text-primary: #ffffff;
+    --dm-text-secondary: #ffffff;
+    --dm-text-tertiary: #bdc1c4;
+    --dm-text-muted: #bdc1c4;
 
-    /* Links */
-    --dm-link: #8ab4f8;
-    --dm-link-hover: #d2e3fc;
+    /* Links - Matching main theme exactly */
+    --dm-link: #0ea1c5;
+    --dm-link-hover: #0b7c9a;
+    --dm-link-visited: #3ebdd6;
 
     /* Backgrounds */
-    --dm-bg-primary: #1e1e1e;
+    --dm-bg-primary: #474747;
     /* Fallback/Base dark color */
     --dm-bg-transparent: transparent;
     --dm-bg-hover: rgba(255, 255, 255, 0.08);
-    --dm-bg-featured: rgba(66, 133, 244, 0.15);
-    --dm-bg-card: #2d2d2d;
-    --dm-bg-button: #3c4043;
-    --dm-bg-button-hover: #5f6368;
+    --dm-bg-featured: rgba(14, 161, 197, 0.15);
+    --dm-bg-card: #5a5a5a;
+    --dm-bg-button: #5a5a5a;
+    --dm-bg-button-hover: #6a6a6a;
     --dm-bg-skill: rgba(255, 255, 255, 0.1);
 
     /* Borders */
-    --dm-border-primary: #5f6368;
-    --dm-border-secondary: #3c4043;
-    --dm-border-featured: rgba(66, 133, 244, 0.4);
+    --dm-border-primary: #bdc1c4;
+    --dm-border-secondary: #7a7a7a;
+    --dm-border-featured: rgba(14, 161, 197, 0.4);
 
     /* Accents */
-    --dm-accent-blue: #8ab4f8;
-    --dm-badge-bg: #1967d2;
+    --dm-accent-blue: #0ea1c5;
+    --dm-badge-bg: #0ea1c5;
 }
 
 /* 2. Global Overrides */
