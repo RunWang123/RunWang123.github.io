@@ -1,0 +1,13 @@
+<!-- 
+  AI CHATBOT EMBED CODE
+  
+  Instructions:
+  1. Sign up for a chatbot service (like Chatbase.co).
+  2. Create a chatbot using 'ai_knowledge_base.md' as the source.
+  3. Get the "Embed Script" from the service.
+  4. Paste the script below this comment.
+-->
+
+<script>
+  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+</script>
