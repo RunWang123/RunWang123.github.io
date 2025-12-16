@@ -38,7 +38,7 @@
   }
 </style>
 
-<div id="custom-chat-btn" class="custom-chat-launcher" onclick="openChat()">
+<div id="custom-chat-btn" class="custom-chat-launcher">
   <span>💬</span> Chat with AI
 </div>
 
@@ -46,12 +46,19 @@
   // Initialize Chatbase
   (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
 
-  // Custom Open Function
-  function openChat() {
+  // Custom Open Function attached via JS to avoid scope issues
+  document.getElementById('custom-chat-btn').addEventListener('click', function () {
     if (window.chatbase) {
       window.chatbase("open");
     }
-  }
+  });
+
+  // Make openChat global for the navigation link
+  window.openChat = function () {
+    if (window.chatbase) {
+      window.chatbase("open");
+    }
+  };
 
   // Robust Auto-Open Logic with Retry
   window.addEventListener("load", function () {
