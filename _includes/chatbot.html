@@ -8,16 +8,65 @@
   4. Paste the script below this comment.
 -->
 
-<script>
-  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
-</script>
+<!-- Custom Chatbot Launcher -->
+<style>
+  .custom-chat-launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #007bff;
+    /* Bright Blue */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .custom-chat-launcher:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background-color: #0056b3;
+  }
+</style>
+
+<div id="custom-chat-btn" class="custom-chat-launcher" onclick="openChat()">
+  <span>💬</span> Chat with AI
+</div>
 
 <script>
-  // Auto-open chatbot after 1.5 seconds to increase visibility
-  // We don't wait for 'load' because the chatbase shim is already defined above.
-  setTimeout(function () {
+  // Initialize Chatbase
+  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+
+  // Custom Open Function
+  function openChat() {
     if (window.chatbase) {
       window.chatbase("open");
     }
-  }, 1500);
+  }
+
+  // Robust Auto-Open Logic with Retry
+  window.addEventListener("load", function () {
+    let attempts = 0;
+    const maxAttempts = 10; // Try for 10 seconds
+    const interval = setInterval(function () {
+      attempts++;
+      if (window.chatbase) {
+        console.log("Chatbot loaded, attempting to open...");
+        window.chatbase("open");
+        clearInterval(interval); // Stop checking once executed
+      } else if (attempts >= maxAttempts) {
+        console.log("Chatbot failed to load in time.");
+        clearInterval(interval);
+      }
+    }, 1000); // Check every 1 second
+  });
 </script>
