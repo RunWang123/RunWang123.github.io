@@ -11,9 +11,9 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Chat with AI"
-    url: "#"
-    onclick: "window.chatbase('open'); return false;"
+  # - title: "Chat with AI"
+  #   url: "#"
+  #   onclick: "window.chatbase('open'); return false;"
 
   # - title: "Talks"
   #   url: /talks/    

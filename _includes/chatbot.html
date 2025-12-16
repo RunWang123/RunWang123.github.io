@@ -13,12 +13,11 @@
 </script>
 
 <script>
-  // Auto-open chatbot after 3 seconds to increase visibility
-  window.addEventListener("load", function () {
-    setTimeout(function () {
-      if (window.chatbase) {
-        window.chatbase("open");
-      }
-    }, 1500);
-  });
+  // Auto-open chatbot after 1.5 seconds to increase visibility
+  // We don't wait for 'load' because the chatbase shim is already defined above.
+  setTimeout(function () {
+    if (window.chatbase) {
+      window.chatbase("open");
+    }
+  }, 1500);
 </script>
