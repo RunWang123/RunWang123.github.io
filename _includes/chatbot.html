@@ -46,34 +46,30 @@
   // Initialize Chatbase
   (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
 
-  // Custom Open Function attached via JS to avoid scope issues
-  document.getElementById('custom-chat-btn').addEventListener('click', function () {
-    if (window.chatbase) {
-      window.chatbase("open");
-    }
-  });
-
-  // Make openChat global for the navigation link
+  // Global openChat function for both the button and navigation link
   window.openChat = function () {
     if (window.chatbase) {
       window.chatbase("open");
+    } else {
+      console.warn("Chatbase not initialized yet");
     }
   };
 
-  // Robust Auto-Open Logic with Retry
-  window.addEventListener("load", function () {
-    let attempts = 0;
-    const maxAttempts = 10; // Try for 10 seconds
-    const interval = setInterval(function () {
-      attempts++;
-      if (window.chatbase) {
-        console.log("Chatbot loaded, attempting to open...");
-        window.chatbase("open");
-        clearInterval(interval); // Stop checking once executed
-      } else if (attempts >= maxAttempts) {
-        console.log("Chatbot failed to load in time.");
-        clearInterval(interval);
-      }
-    }, 1000); // Check every 1 second
-  });
+  // Attach listener to custom button
+  const customBtn = document.getElementById('custom-chat-btn');
+  if (customBtn) {
+    customBtn.addEventListener('click', window.openChat);
+  }
+
+  // Auto-open logic (simple retry)
+  let checkCount = 0;
+  const autoOpenInterval = setInterval(() => {
+    checkCount++;
+    if (window.chatbase) {
+      // Try to open
+      window.chatbase("open");
+      clearInterval(autoOpenInterval);
+    }
+    if (checkCount > 20) clearInterval(autoOpenInterval); // Stop after 10 seconds (20 * 500ms)
+  }, 500);
 </script>
