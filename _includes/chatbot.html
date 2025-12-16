@@ -8,68 +8,53 @@
   4. Paste the script below this comment.
 -->
 
-<!-- Custom Chatbot Launcher -->
-<style>
-  .custom-chat-launcher {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    background-color: #007bff;
-    /* Bright Blue */
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 2px solid white;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+<script>
+  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+</script>
 
-  .custom-chat-launcher:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    background-color: #0056b3;
+<!-- Custom Chatbot Launcher -->
+<div id="ai-chat-launcher" onclick="window.chatbase('open')" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00C6FF, #0072FF);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+">
+  <!-- Icon (Simple SVG for Chat) -->
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 6H12.01V6.01H12V6ZM12 18H12.01V18.01H12V18ZM15 11H13V15H11V10H14V9H10V16H14V17H10V18H14V11H15Z"
+      fill="white" fill-opacity="0" /> <!-- Fallback/Spacer -->
+    <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z"
+      fill="white" />
+  </svg>
+  <span>Chat with AI</span>
+</div>
+
+<style>
+  #ai-chat-launcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
   }
 </style>
 
-<div id="custom-chat-btn" class="custom-chat-launcher">
-  <span>💬</span> Chat with AI
-</div>
-
 <script>
-  // Initialize Chatbase
-  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "xRGrQPNPV8Yx_ipYl5Izb"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
-
-  // Global openChat function for both the button and navigation link
-  window.openChat = function () {
+  // Auto-open chatbot after 1.5 seconds
+  setTimeout(function () {
     if (window.chatbase) {
       window.chatbase("open");
-    } else {
-      console.warn("Chatbase not initialized yet");
     }
-  };
-
-  // Attach listener to custom button
-  const customBtn = document.getElementById('custom-chat-btn');
-  if (customBtn) {
-    customBtn.addEventListener('click', window.openChat);
-  }
-
-  // Auto-open logic (simple retry)
-  let checkCount = 0;
-  const autoOpenInterval = setInterval(() => {
-    checkCount++;
-    if (window.chatbase) {
-      // Try to open
-      window.chatbase("open");
-      clearInterval(autoOpenInterval);
-    }
-    if (checkCount > 20) clearInterval(autoOpenInterval); // Stop after 10 seconds (20 * 500ms)
-  }, 500);
+  }, 1500);
 </script>
