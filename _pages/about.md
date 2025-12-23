@@ -25,7 +25,7 @@ Recent Highlights
 {% elsif highlight.type == "publication" %}
 {% assign publications = site.data.publications.publications %}
 {% for pub in publications %}
-{% if pub.id == highlight.publication_id %}* [{{ highlight.timestamp | date: "%m/%d/%Y" }}] **{{ pub.title }}**, published in {{ pub.venue_short }}{% if pub.month != "" %}, {{ pub.month }}{% endif %} {{ pub.year }}{% if pub.acceptance_rate != "" %} (Acceptance Rate: {{ pub.acceptance_rate }}){% endif %}{% if pub.note != "" %} ({{ pub.note }}){% endif %}
+{% if pub.id == highlight.publication_id %}* [{{ highlight.timestamp | date: "%m/%d/%Y" }}] **{{ pub.title }}**, accepted to {{ pub.venue_short }}{% if pub.month != "" %}, {{ pub.month }}{% endif %} {{ pub.year }}{% if pub.acceptance_rate != "" %} (Acceptance Rate: {{ pub.acceptance_rate }}){% endif %}{% if pub.note != "" %} ({{ pub.note }}){% endif %}
 {% endif %}
 {% endfor %}
 {% endif %}
