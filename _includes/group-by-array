@@ -7,29 +7,13 @@
 
 <!-- Initialize -->
 {% assign __empty_array = '' | split: ',' %}
-{% assign group_names = __empty_array %}
 {% assign group_items = __empty_array %}
 
 <!-- Map -->
 {% assign __names =  include.collection | map: include.field %}
 
-<!-- Flatten -->
-{% assign __names =  __names | join: ',' | join: ',' | split: ',' %}
-
-<!-- Uniq -->
-{% assign __names =  __names | sort %}
-{% for name in __names | sort %}
-
-<!-- If not equal to previous then it must be unique as sorted -->
-{% unless name == previous %}
-
-<!-- Push to group_names -->
-{% assign group_names = group_names | push: name %}
-{% endunless %}
-
-{% assign previous = name %}
-{% endfor %}
-
+<!-- Flatten and Uniq -->
+{% assign group_names =  __names | join: ',' | join: ',' | split: ',' | uniq | sort %}
 
 <!-- group_items -->
 {% for name in group_names %}
