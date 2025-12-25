@@ -208,6 +208,14 @@
   {% endfor %}
 </div>
 
+<script type="application/json" id="pub-tags-data">
+  [
+  {% for tag in unique_pub_tags %}
+    { "slug": {{ tag | slugify | jsonify }}, "label": {{ tag | jsonify }} }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ]
+</script>
+
 <script>
   /* BibTeX Toggle */
   function toggleBibtex(pubId) {
@@ -222,11 +230,16 @@
   /* Filtering Logic */
   var selectedPubSlugs = [];
 
-  var allPubTags = [
-    {% for tag in unique_pub_tags %}
-  { slug: { { tag | slugify | jsonify } }, label: { { tag | jsonify } } },
-  {% endfor %}
-  ];
+  /* Load Tags from JSON block to avoid JS syntax errors with Liquid */
+  var allPubTags = [];
+  try {
+    var tagsData = document.getElementById('pub-tags-data');
+    if (tagsData) {
+      allPubTags = JSON.parse(tagsData.textContent);
+    }
+  } catch (e) {
+    console.error("Failed to parse pub tags", e);
+  }
 
   /* Use query parameter ?filter=tag1,tag2 instead of hash to avoid conflict if on same page logic */
 
