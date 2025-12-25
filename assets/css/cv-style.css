@@ -56,10 +56,11 @@
 
 /* Section Styles */
 .cv-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .cv-section h2 {
+  margin-top: 0;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 0.25rem;
   margin-bottom: 0.5rem;
@@ -220,15 +221,15 @@
   .cv-container {
     max-width: 100%;
   }
-  
+
   .cv-header {
     border-bottom-color: #ccc;
   }
-  
+
   .cv-section h2 {
     border-bottom-color: #ccc;
   }
-  
+
   .cv-skill-keyword,
   .cv-project-keyword,
   .cv-interest-keyword {
