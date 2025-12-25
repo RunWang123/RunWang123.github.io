@@ -8,10 +8,61 @@ author_profile: true
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
-{% for tag in group_names %}
+
+<div id="tag-archive-container">
+  <div id="tag-filter-warning"
+    style="display: none; margin-bottom: 20px; padding: 10px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px;">
+    <strong><i class="fas fa-filter"></i> Filtering by tag:</strong> <span id="current-tag-name"
+      style="font-weight: bold;"></span>
+    <a href="{{ '/tags/' | relative_url }}" class="btn btn--primary btn--small"
+      style="margin-left: 10px; text-decoration: none; color: white;">View All Tags</a>
+  </div>
+
+  {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
+  {% assign tag_slug = tag | slugify %}
+  <div class="tag-section" data-tag="{{ tag_slug }}">
+    <h2 id="{{ tag_slug }}" class="archive__subtitle">{{ tag }}</h2>
+    {% for post in posts %}
     {% include archive-single.html %}
+    {% endfor %}
+  </div>
   {% endfor %}
-{% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function filterTags() {
+      var hash = window.location.hash.substring(1); // Remove '#'
+      var sections = document.querySelectorAll('.tag-section');
+      var warning = document.getElementById('tag-filter-warning');
+      var label = document.getElementById('current-tag-name');
+
+      if (hash) {
+        if (warning && label) {
+          warning.style.display = 'block';
+          label.textContent = hash.replace(/-/g, ' '); // Simple format
+        }
+
+        sections.forEach(function (section) {
+          if (section.getAttribute('data-tag') === hash) {
+            section.style.display = 'block';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+      } else {
+        if (warning) warning.style.display = 'none';
+        sections.forEach(function (section) {
+          section.style.display = 'block';
+        });
+      }
+    }
+
+    // Run on load
+    filterTags();
+
+    // Run on hash change (e.g. clicking a link within the page)
+    window.addEventListener('hashchange', filterTags);
+  });
+</script>
