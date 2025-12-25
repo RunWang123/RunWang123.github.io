@@ -1,7 +1,7 @@
 ---
 title: "Cross-Country Road Trip: Columbus to LA"
-date: 2025-12-25
-permalink: /posts/2025/12/road-trip-columbus-to-la/
+date: 2025-08-01
+permalink: /posts/2025/08/road-trip-columbus-to-la/
 tags:
   - travel
   - road trip
