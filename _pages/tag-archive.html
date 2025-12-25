@@ -63,16 +63,14 @@ author_profile: true
 
   function resetTags() {
     history.pushState("", document.title, window.location.pathname + window.location.search);
-    applyFilter(""); // empty hash
+    applyFilter("");
   }
 
   function applyFilter(hash) {
-    // If hash argument is provided, use it. Otherwise read from window.
     if (hash === undefined) {
       hash = window.location.hash.substring(1);
     }
 
-    // Ensure we decode content just in case
     try { hash = decodeURIComponent(hash); } catch (e) { }
 
     var sections = document.querySelectorAll('.tag-section');
@@ -81,7 +79,6 @@ author_profile: true
     var cloud = document.getElementById('tag-cloud');
 
     if (hash) {
-      // TAG SELECTED MODE
       if (warning && label) {
         warning.style.display = 'block';
         label.textContent = hash.replace(/-/g, ' ');
@@ -96,7 +93,6 @@ author_profile: true
         }
       });
     } else {
-      // INDEX MODE
       if (warning) warning.style.display = 'none';
       if (cloud) cloud.style.display = 'block';
 
@@ -107,10 +103,7 @@ author_profile: true
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Initial check (in case user comes from a link with hash)
     applyFilter();
-
-    // Listen for manual hash changes (e.g. browser back button)
     window.addEventListener('hashchange', function () {
       applyFilter();
     });
