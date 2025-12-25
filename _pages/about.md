@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Run Wang - Welcome to my academic website!"
+title: "Background"
 author_profile: true
 redirect_from: 
   - /about/
