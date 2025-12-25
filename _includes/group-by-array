@@ -8,6 +8,7 @@
 <!-- Initialize -->
 {% assign __empty_array = '' | split: ',' %}
 {% assign group_items = __empty_array %}
+{% assign group_names = __empty_array %}
 
 <!-- Map -->
 {% assign __names =  include.collection | map: include.field %}
