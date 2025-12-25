@@ -8,14 +8,15 @@
 }
 
 /* Header Styles */
+/* Header Styles */
 .cv-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-bottom: 2px solid #f2f2f2;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .cv-header h1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: #2a7ae2;
 }
 
@@ -23,7 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .cv-contact-item {
@@ -35,7 +36,7 @@
 .cv-profiles {
   display: flex;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .cv-profile-item {
@@ -55,13 +56,13 @@
 
 /* Section Styles */
 .cv-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .cv-section h2 {
   border-bottom: 1px solid #f2f2f2;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -74,13 +75,13 @@
 
 /* Item Styles */
 .cv-item {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .cv-item-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .cv-item-title {
@@ -94,7 +95,7 @@
 
 .cv-item-subtitle {
   color: #666;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .cv-item-summary {
