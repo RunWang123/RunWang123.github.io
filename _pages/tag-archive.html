@@ -10,12 +10,15 @@ author_profile: true
 
 
 
+
 <!-- Tag Cloud (Visible by default) -->
 <div id="tag-cloud" class="archive" style="margin-bottom: 30px;">
   <h2 class="archive__subtitle">Tags</h2>
   <div style="display: flex; flex-wrap: wrap; gap: 10px;">
     {% for tag in group_names %}
-    <a href="#{{ tag | slugify }}" class="btn btn--info" style="text-decoration: none;">{{ tag }}</a>
+    {% assign tag_slug = tag | slugify %}
+    <button onclick="selectTag('{{ tag_slug }}')" class="btn btn--info"
+      style="text-decoration: none; border: none; cursor: pointer;">{{ tag }}</button>
     {% endfor %}
   </div>
 </div>
@@ -28,10 +31,10 @@ author_profile: true
       <strong><i class="fas fa-tag"></i> Viewing posts for tag:</strong>
       <span id="current-tag-name" style="font-weight: bold; font-size: 1.1em; margin-left: 5px; color: #2874a6;"></span>
     </div>
-    <a href="{{ '/tags/' | relative_url }}" onclick="resetTags(event)" class="btn btn--inverse btn--small"
-      style="text-decoration: none;">
+    <button onclick="resetTags()" class="btn btn--inverse btn--small"
+      style="text-decoration: none; border: none; cursor: pointer;">
       <i class="fas fa-times-circle"></i> View All Tags
-    </a>
+    </button>
   </div>
 </div>
 
@@ -53,15 +56,25 @@ author_profile: true
 </div>
 
 <script>
-  function resetTags(e) {
-    if (e) e.preventDefault();
-    history.pushState("", document.title, window.location.pathname + window.location.search);
-    window.location.hash = ""; // Clear hash
-    applyFilter();
+  function selectTag(tagSlug) {
+    window.location.hash = tagSlug;
+    applyFilter(tagSlug);
   }
 
-  function applyFilter() {
-    var hash = window.location.hash.substring(1); // Remove '#'
+  function resetTags() {
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+    applyFilter(""); // empty hash
+  }
+
+  function applyFilter(hash) {
+    // If hash argument is provided, use it. Otherwise read from window.
+    if (hash === undefined) {
+      hash = window.location.hash.substring(1);
+    }
+
+    // Ensure we decode content just in case
+    try { hash = decodeURIComponent(hash); } catch (e) { }
+
     var sections = document.querySelectorAll('.tag-section');
     var warning = document.getElementById('tag-filter-warning');
     var label = document.getElementById('current-tag-name');
@@ -73,7 +86,7 @@ author_profile: true
         warning.style.display = 'block';
         label.textContent = hash.replace(/-/g, ' ');
       }
-      if (cloud) cloud.style.display = 'none'; // Optional: hide cloud when reading
+      if (cloud) cloud.style.display = 'none';
 
       sections.forEach(function (section) {
         if (section.getAttribute('data-tag') === hash) {
@@ -83,18 +96,23 @@ author_profile: true
         }
       });
     } else {
-      // INDEX MODE (Show Cloud, Hide All Posts)
+      // INDEX MODE
       if (warning) warning.style.display = 'none';
       if (cloud) cloud.style.display = 'block';
 
       sections.forEach(function (section) {
-        section.style.display = 'none'; // HIDE ALL POSTS BY DEFAULT
+        section.style.display = 'none';
       });
     }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    // Initial check (in case user comes from a link with hash)
     applyFilter();
-    window.addEventListener('hashchange', applyFilter);
+
+    // Listen for manual hash changes (e.g. browser back button)
+    window.addEventListener('hashchange', function () {
+      applyFilter();
+    });
   });
 </script>
