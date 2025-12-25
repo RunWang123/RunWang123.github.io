@@ -9,20 +9,42 @@ author_profile: true
 {% include group-by-array collection=site.posts field="tags" %}
 
 
-<div id="tag-archive-container">
-  <div id="tag-filter-warning"
-    style="display: none; margin-bottom: 20px; padding: 10px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px;">
-    <strong><i class="fas fa-filter"></i> Filtering by tag:</strong> <span id="current-tag-name"
-      style="font-weight: bold;"></span>
-    <a href="{{ '/tags/' | relative_url }}" class="btn btn--primary btn--small"
-      style="margin-left: 10px; text-decoration: none; color: white;">View All Tags</a>
-  </div>
 
+<!-- Tag Cloud (Visible by default) -->
+<div id="tag-cloud" class="archive" style="margin-bottom: 30px;">
+  <h2 class="archive__subtitle">Tags</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    {% for tag in group_names %}
+    <a href="#{{ tag | slugify }}" class="btn btn--info" style="text-decoration: none;">{{ tag }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Warning / Reset Button (Hidden by default) -->
+<div id="tag-filter-warning"
+  style="display: none; margin-bottom: 20px; padding: 15px; background-color: #eef5f9; border-left: 5px solid #2874a6; border-radius: 4px;">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div>
+      <strong><i class="fas fa-tag"></i> Viewing posts for tag:</strong>
+      <span id="current-tag-name" style="font-weight: bold; font-size: 1.1em; margin-left: 5px; color: #2874a6;"></span>
+    </div>
+    <a href="{{ '/tags/' | relative_url }}" onclick="resetTags(event)" class="btn btn--inverse btn--small"
+      style="text-decoration: none;">
+      <i class="fas fa-times-circle"></i> View All Tags
+    </a>
+  </div>
+</div>
+
+<!-- Posts List Container -->
+<div id="tag-archive-container">
   {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}
   {% assign tag_slug = tag | slugify %}
-  <div class="tag-section" data-tag="{{ tag_slug }}">
-    <h2 id="{{ tag_slug }}" class="archive__subtitle">{{ tag }}</h2>
+  <!-- All sections hidden by default -->
+  <div class="tag-section" data-tag="{{ tag_slug }}" style="display: none;">
+    <h2 id="{{ tag_slug }}" class="archive__subtitle" style="border-bottom: 2px solid #eaeaea; padding-bottom: 10px;">
+      <i class="fas fa-hashtag" style="color: #ccc; margin-right: 5px;"></i> {{ tag }}
+    </h2>
     {% for post in posts %}
     {% include archive-single.html %}
     {% endfor %}
@@ -31,38 +53,48 @@ author_profile: true
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    function filterTags() {
-      var hash = window.location.hash.substring(1); // Remove '#'
-      var sections = document.querySelectorAll('.tag-section');
-      var warning = document.getElementById('tag-filter-warning');
-      var label = document.getElementById('current-tag-name');
+  function resetTags(e) {
+    if (e) e.preventDefault();
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+    window.location.hash = ""; // Clear hash
+    applyFilter();
+  }
 
-      if (hash) {
-        if (warning && label) {
-          warning.style.display = 'block';
-          label.textContent = hash.replace(/-/g, ' '); // Simple format
-        }
+  function applyFilter() {
+    var hash = window.location.hash.substring(1); // Remove '#'
+    var sections = document.querySelectorAll('.tag-section');
+    var warning = document.getElementById('tag-filter-warning');
+    var label = document.getElementById('current-tag-name');
+    var cloud = document.getElementById('tag-cloud');
 
-        sections.forEach(function (section) {
-          if (section.getAttribute('data-tag') === hash) {
-            section.style.display = 'block';
-          } else {
-            section.style.display = 'none';
-          }
-        });
-      } else {
-        if (warning) warning.style.display = 'none';
-        sections.forEach(function (section) {
-          section.style.display = 'block';
-        });
+    if (hash) {
+      // TAG SELECTED MODE
+      if (warning && label) {
+        warning.style.display = 'block';
+        label.textContent = hash.replace(/-/g, ' ');
       }
+      if (cloud) cloud.style.display = 'none'; // Optional: hide cloud when reading
+
+      sections.forEach(function (section) {
+        if (section.getAttribute('data-tag') === hash) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    } else {
+      // INDEX MODE (Show Cloud, Hide All Posts)
+      if (warning) warning.style.display = 'none';
+      if (cloud) cloud.style.display = 'block';
+
+      sections.forEach(function (section) {
+        section.style.display = 'none'; // HIDE ALL POSTS BY DEFAULT
+      });
     }
+  }
 
-    // Run on load
-    filterTags();
-
-    // Run on hash change (e.g. clicking a link within the page)
-    window.addEventListener('hashchange', filterTags);
+  document.addEventListener("DOMContentLoaded", function () {
+    applyFilter();
+    window.addEventListener('hashchange', applyFilter);
   });
 </script>
