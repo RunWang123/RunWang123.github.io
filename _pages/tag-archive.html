@@ -108,8 +108,7 @@ author_profile: true
 <!-- Posts Grid (Hidden by Filter) -->
 <div id="posts-grid">
   {% for post in site.posts %}
-  <div class="post-item-wrapper" style="display: none;"
-    data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
+  <div class="post-item-wrapper" data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
     {% include archive-single.html %}
   </div>
   {% endfor %}
@@ -208,7 +207,7 @@ author_profile: true
     /* 3. Filter Posts */
     posts.forEach(function (p) {
       if (selectedSlugs.length === 0) {
-        p.style.display = 'none'; /* Default: show nothing when no filter */
+        p.style.display = 'block'; /* Default: show all when no filter */
         return;
       }
 
