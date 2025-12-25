@@ -1,13 +1,129 @@
 {% assign publications = site.data.publications.publications %}
 
-<!-- Publications List Template -->
-<div class="publications-container">
+<!-- Extract Tags -->
+{% assign all_pub_tags = "" | split: "," %}
+{% for pub in publications %}
+{% if pub.tags %}
+{% for t in pub.tags %}
+{% assign all_pub_tags = all_pub_tags | push: t %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% assign unique_pub_tags = all_pub_tags | uniq | sort %}
+
+<style>
+  /* Filter Styles */
+  .pub-filter-container {
+    margin-bottom: 30px;
+  }
+
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .tag-chip {
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    user-select: none;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+
+  /* Available Tags */
+  .tag-avail {
+    background-color: #f1f3f5;
+    color: #495057;
+    border: 1px solid #dee2e6;
+  }
+
+  .tag-avail:hover {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+  }
+
+  /* Selected Tags */
+  .tag-selected {
+    background-color: #228be6;
+    color: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #1c7cd6;
+  }
+
+  .tag-selected:hover {
+    background-color: #1c7cd6;
+  }
+
+  .tag-remove-icon {
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 0.8;
+  }
+
+  .tags-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 0.85em;
+    color: #868e96;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+</style>
+
+<!-- Filter UI -->
+{% if unique_pub_tags.size > 0 %}
+<div class="pub-filter-container">
+  <!-- Row 1: Available Tags -->
+  <div>
+    <span class="tags-label">Detailed Areas</span>
+    <div id="pub-row-available" class="tag-container">
+      {% for tag in unique_pub_tags %}
+      {% assign tag_slug = tag | slugify %}
+      <button class="tag-chip tag-avail" data-slug="{{ tag_slug }}" data-label="{{ tag }}"
+        onclick="addPubTag('{{ tag_slug }}')">
+        {{ tag }}
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Row 2: Selected Tags -->
+  <div id="pub-filter-area" style="display: none;">
+    <span class="tags-label">Active Filters</span>
+    <div id="pub-row-selected" class="tag-container">
+      <!-- Selected tags injected here -->
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Publications List -->
+<div class="publications-container" id="publications-list">
   {% for pub in publications %}
   {% if include.featured_only and pub.featured != true %}
   {% continue %}
   {% endif %}
 
-  <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}">
+  <!-- Add data-tags attribute -->
+  {% assign pub_tag_slugs = "" %}
+  {% if pub.tags %}
+  {% for t in pub.tags %}
+  {% assign s = t | slugify %}
+  {% assign pub_tag_slugs = pub_tag_slugs | append: s | append: " " %}
+  {% endfor %}
+  {% endif %}
+
+  <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}"
+    data-tags="{{ pub_tag_slugs }}">
     <div class="publication-header">
       {% if pub.venue_short %}
       <div class="publication-venue-badge">{{ pub.venue_short }}</div>
@@ -30,7 +146,8 @@
 
     <div class="publication-venue">
       <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
-      {% if pub.acceptance_rate %}<br><span class="publication-acceptance-rate">Acceptance Rate: {{ pub.acceptance_rate }}</span>{% endif %}
+      {% if pub.acceptance_rate %}<br><span class="publication-acceptance-rate">Acceptance Rate: {{ pub.acceptance_rate
+        }}</span>{% endif %}
     </div>
 
     {% if pub.abstract and include.show_abstracts %}
@@ -91,15 +208,133 @@
   {% endfor %}
 </div>
 
-{% if include.show_bibtex %}
 <script>
+  /* BibTeX Toggle */
   function toggleBibtex(pubId) {
-    const bibtexDiv = document.getElementById('bibtex-' + pubId);
+    var bibtexDiv = document.getElementById('bibtex-' + pubId);
     if (bibtexDiv.style.display === 'none') {
       bibtexDiv.style.display = 'block';
     } else {
       bibtexDiv.style.display = 'none';
     }
   }
+
+  /* Filtering Logic */
+  var selectedPubSlugs = [];
+
+  var allPubTags = [
+    {% for tag in unique_pub_tags %}
+  { slug: { { tag | slugify | jsonify } }, label: { { tag | jsonify } } },
+  {% endfor %}
+  ];
+
+  /* Use query parameter ?filter=tag1,tag2 instead of hash to avoid conflict if on same page logic */
+
+  function initPubFilter() {
+    /* Read Hash */
+    var hash = window.location.hash.substring(1);
+    if (hash) {
+      try {
+        hash = decodeURIComponent(hash);
+        var parts = hash.split(',').filter(function (s) { return s.length > 0; });
+        selectedPubSlugs = parts;
+      } catch (e) { }
+    } else {
+      selectedPubSlugs = [];
+    }
+    renderPubFilter();
+  }
+
+  function addPubTag(slug) {
+    if (selectedPubSlugs.indexOf(slug) === -1) {
+      selectedPubSlugs.push(slug);
+      updatePubState();
+    }
+  }
+
+  function removePubTag(slug) {
+    selectedPubSlugs = selectedPubSlugs.filter(function (s) { return s !== slug; });
+    updatePubState();
+  }
+
+  function updatePubState() {
+    if (selectedPubSlugs.length > 0) {
+      window.location.hash = selectedPubSlugs.join(',');
+    } else {
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      renderPubFilter();
+    }
+  }
+
+  function renderPubFilter() {
+    var rowAvail = document.getElementById('pub-row-available');
+    var rowSel = document.getElementById('pub-row-selected');
+    var docFilterArea = document.getElementById('pub-filter-area');
+    var items = document.querySelectorAll('.publication-item');
+
+    /* 1. Update Available Tags */
+    if (rowAvail) {
+      var availBtns = rowAvail.querySelectorAll('button');
+      availBtns.forEach(function (btn) {
+        var s = btn.getAttribute('data-slug');
+        if (selectedPubSlugs.indexOf(s) !== -1) {
+          btn.style.display = 'none';
+        } else {
+          btn.style.display = 'inline-block';
+        }
+      });
+    }
+
+    /* 2. Render Selected Tags */
+    if (rowSel) {
+      rowSel.innerHTML = '';
+      if (selectedPubSlugs.length > 0) {
+        if (docFilterArea) docFilterArea.style.display = 'block';
+
+        selectedPubSlugs.forEach(function (slug) {
+          var tObj = undefined;
+          for (var i = 0; i < allPubTags.length; i++) {
+            if (allPubTags[i].slug === slug) { tObj = allPubTags[i]; break; }
+          }
+          var label = tObj ? tObj.label : slug;
+
+          var btn = document.createElement('button');
+          btn.className = 'tag-chip tag-selected';
+          btn.onclick = function () { removePubTag(slug); };
+          btn.innerHTML = label + ' <span class="tag-remove-icon">&times;</span>';
+          rowSel.appendChild(btn);
+        });
+      } else {
+        if (docFilterArea) docFilterArea.style.display = 'none';
+      }
+    }
+
+    /* 3. Filter Items */
+    items.forEach(function (item) {
+      if (selectedPubSlugs.length === 0) {
+        item.style.display = 'block';
+        return;
+      }
+
+      var pTagsRaw = item.getAttribute('data-tags') || "";
+      var pTags = pTagsRaw.split(' ');
+
+      var match = false;
+      for (var i = 0; i < selectedPubSlugs.length; i++) {
+        if (pTags.indexOf(selectedPubSlugs[i]) !== -1) {
+          match = true;
+          break;
+        }
+      }
+
+      if (match) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initPubFilter);
+  window.addEventListener('hashchange', initPubFilter);
 </script>
-{% endif %}
