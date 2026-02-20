@@ -243,42 +243,40 @@ cd C:\carla-0.9.15
 make PythonAPI GENERATOR="Visual Studio 17 2022"
 ```
 
-### Troubleshooting: Boost Library Issues
+### 🔧 Troubleshooting: Boost Linker Error (Wrong MSVC Toolset)
 
-If you encounter an error like:
+> ⚠️ **Error:**
+> ```
+> LINK : fatal error LNK1104: cannot open file 'libboost_filesystem-vc142-mt-x64-1_80.lib'
+> ```
 
-```
-LINK : fatal error LNK1104: cannot open file 'libboost_filesystem-vc142-mt-x64-1_80.lib'
-```
+**Cause:** Boost was compiled with MSVC 14.2 (VS 2019) but you're building with MSVC 14.3 (VS 2022). The linker expects `vc143` libraries.
 
-**Explanation:** The Boost libraries were built with MSVC 14.2 (VS 2019), but you're using MSVC 14.3 (VS 2022). The linker expects Boost libraries for `vc143`.
+**Fix:** Delete the existing Boost build and reinstall with the correct toolset:
 
-**Solution:**
-
-```bash
-# Delete the current Boost installation
+```bat
+rem Delete the current Boost installation
 rm -r .\Build\boost-1.80.0-install\
 
-# Reinstall Boost with the correct toolset
+rem Reinstall with the correct toolset (-j 32 = parallel jobs, adjust to your CPU)
 .\Util\InstallersWin\install_boost.bat --build-dir "C:\carla-0.9.15\Build\" --toolset msvc-14.3 --version 1.80.0 -j 32
 
-# Rebuild the Python API
-make PythonAPI
+rem Rebuild the Python API
+make PythonAPI GENERATOR="Visual Studio 17 2022"
 ```
 
-> `--toolset msvc-14.3` specifies the correct MSVC version. `-j 32` uses 32 cores for parallel compilation (adjust to your CPU).
+---
 
-#### Troubleshooting: `b2.exe` Boost Build Error
+### 🔧 Troubleshooting: `b2.exe` Boost Build Error (Toolset Mismatch in Scripts)
 
-If instead you see:
+> ⚠️ **Error:**
+> ```
+> -[install_boost]: [B2 ERROR] An error ocurred while installing using "b2.exe".
+> ```
 
-```
--[install_boost]: [B2 ERROR] An error ocurred while installing using "b2.exe".
-```
+**Cause:** Boost 1.80's `bootstrap.bat` auto-detects `vc143`, but CARLA's build scripts hardcode `vc141`/`vc142` in two places, causing `b2` to fail.
 
-The root cause is a **VC toolset mismatch**: Boost 1.80's `bootstrap.bat` picks up the latest toolkit (`vc143`) automatically, but CARLA's build scripts hardcode `vc141`/`vc142` in two places, causing `b2` to fail.
-
-**Fix — update the toolset to `vc143` in two files:**
+**Fix:** Update the toolset to `vc143` in two files:
 
 1. `Util\BuildTools\Windows.mk` — around **line 75**, change any `vc141` or `vc142` reference to `vc143`.
 2. `Util\InstallersWin\install_boost.bat` — around **line 109**, change the same.
@@ -291,13 +289,20 @@ make PythonAPI GENERATOR="Visual Studio 17 2022"
 
 > *Credit: fix originally identified by [ThibaultFy](https://github.com/carla-simulator/carla/issues/21) (Aug 2021).*
 
-### Troubleshooting: zlib Download Failure
+---
 
-If you see an error like `[install_zlib]: [CMAKE ERROR]` with a 404 or redirect failure, the zlib download URL in CARLA's script is broken — `zlib.net` no longer hosts the file and the backup URL returns a `301` redirect that PowerShell's `WebClient` won't follow.
+### 🔧 Troubleshooting: zlib Download Failure (Broken URL)
 
-**Fix — patch `install_zlib.bat` to use the GitHub archive:**
+> ⚠️ **Error:**
+> ```
+> [install_zlib]: Retrieving zlib.
+> Exception calling "DownloadFile" ... (404) Not Found.
+> [install_zlib]: [CMAKE ERROR] An error ocurred while executing cmake command.
+> ```
 
-Open `C:\carla-0.9.15\Util\InstallersWin\install_zlib.bat`, find the line containing `ZLIB_REPO` (with `zlib.net`) and replace it with:
+**Cause:** `zlib.net` no longer hosts the file; the backup URL returns a `301` redirect that PowerShell's `WebClient` won't follow, so the zip is never saved.
+
+**Fix:** Patch `install_zlib.bat` to use the stable GitHub archive. Open `C:\carla-0.9.15\Util\InstallersWin\install_zlib.bat`, find the line with `ZLIB_REPO` (containing `zlib.net`) and replace it with:
 
 ```bat
 set ZLIB_REPO=https://github.com/madler/zlib/archive/refs/tags/v%ZLIB_VERSION%.zip
@@ -313,23 +318,95 @@ del /q Build\zlib-1.2.13.zip
 make PythonAPI GENERATOR="Visual Studio 17 2022"
 ```
 
-#### Still failing? Check your CMake version
+---
 
-If zlib downloads successfully but you still get a CMake error like:
+### 🔧 Troubleshooting: CMake Too New (zlib / CMake Compatibility Error)
 
-```
-Compatibility with CMake < 3.5 has been removed from CMake.
-```
+> ⚠️ **Error:**
+> ```
+> Compatibility with CMake < 3.5 has been removed from CMake.
+> [install_zlib]: [CMAKE ERROR] An error ocurred while executing cmake command.
+> ```
 
-Your CMake is **too new**. CARLA's `CMakeLists.txt` uses `cmake_minimum_required` with a version below 3.5, which CMake ≥ 3.50 no longer supports.
+**Cause:** Your CMake version is ≥ 3.50. CARLA's `CMakeLists.txt` uses `cmake_minimum_required` with a value below 3.5, which CMake ≥ 3.50 no longer supports.
 
-**Fix:** Downgrade CMake to a version **>= 3.15 and < 3.50** (e.g., [3.28.6](https://cmake.org/files/v3.28/)). This matches the version constraint in the Prerequisites section above. After installing the older version, verify with:
+**Fix:** Downgrade CMake to a version **>= 3.15 and < 3.50** (e.g., [3.28.6](https://cmake.org/files/v3.28/)). After installing, verify:
 
 ```bat
 cmake --version
+rem Must show >= 3.15 and < 3.50
 ```
 
 Then clean up and retry `make PythonAPI` as above.
+
+---
+
+### 🔧 Troubleshooting: OSM2ODR CMake "x64" Path Error
+
+> ⚠️ **Error:**
+> ```
+> CMake Error: The source directory ".../Build/osm2odr-visualstudio/x64" does not exist.
+> Ignoring extra path from command line: "...\Build\om2odr-source""
+> ```
+
+**Cause:** The build script passes `x64` as a positional argument instead of an architecture flag, so CMake treats it as the source directory.
+
+**Fix:** Open `C:\carla-0.9.15\Util\BuildTools\BuildOSM2ODR.bat`, find the CMake configure line containing `-G %GENERATOR% %PLATFORM%`, and change `%PLATFORM%` to `-A x64`:
+
+```bat
+cmake -G %GENERATOR% -A x64^
+```
+
+Then clean the broken dirs and retry:
+
+```bat
+rmdir /s /q Build\osm2odr-visualstudio
+rmdir /s /q Build\osm2odr-source
+rmdir /s /q Build\om2odr-source
+
+make PythonAPI GENERATOR="Visual Studio 17 2022"
+```
+
+---
+
+### 🔧 Troubleshooting: "Unreal Engine Not Detected" / `UE4_ROOT` Not Set
+
+> ⚠️ **Error:**
+> ```
+> ERROR: The system was unable to find the specified registry key or value.
+> -[BuildCarlaUE4]: [ERROR] Unreal Engine not detected
+> ```
+
+**Cause:** CARLA checks the `UE4_ROOT` environment variable first, then falls back to the Windows registry — which usually doesn't exist.
+
+**Fix:** Set `UE4_ROOT` to wherever **you** cloned the CARLA UE4 fork (the folder containing `Engine\`). The path varies by user — substitute your actual install location:
+
+```bat
+rem Replace C:\CarlaUE4 with YOUR actual UE4 clone directory
+
+rem For the current session only
+set UE4_ROOT=C:\CarlaUE4
+
+rem To persist across all terminals (run once)
+setx UE4_ROOT "C:\CarlaUE4"
+```
+
+For example, if you cloned to `D:\UnrealEngine\CarlaUE4`:
+
+```bat
+setx UE4_ROOT "D:\UnrealEngine\CarlaUE4"
+```
+
+Verify it's correct (you should see `UE4Editor.exe` listed):
+
+```bat
+echo %UE4_ROOT%
+dir "%UE4_ROOT%\Engine\Binaries\Win64\UE4Editor.exe"
+```
+
+> **`UE4_ROOT` must point to the root folder** (containing `Engine\`), **not** to `Engine\Binaries\Win64` itself.
+
+> **Haven't built UE4 yet?** Go back to the [Build Unreal Engine 4 for CARLA](#build-unreal-engine-4-for-carla) section — the CARLA-specific fork (`-b carla`) must be fully compiled first.
 
 ### Compile the CARLA Server
 
