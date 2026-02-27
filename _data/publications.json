@@ -1,6 +1,45 @@
 {
     "publications": [
         {
+            "id": "flexmap-2026",
+            "title": "FlexMap: Generalized HD Map Construction from Flexible Camera Configurations",
+            "authors": "Run Wang, Chaoyi Zhou, Amir Salarpour, Xi Liu, Zhi-Qi Cheng, Feng Luo, Mert D. Pesé, Siyu Huang",
+            "venue": "arXiv preprint arXiv:2601.22376",
+            "venue_short": "arXiv",
+            "proceedings": "",
+            "date": "2026-01-29",
+            "year": "2026",
+            "month": "January",
+            "type": "preprint",
+            "status": "preprint",
+            "url": "https://arxiv.org/abs/2601.22376",
+            "doi": "10.48550/arXiv.2601.22376",
+            "address": "",
+            "pages": "",
+            "pdf_url": "https://arxiv.org/pdf/2601.22376",
+            "slides_url": "",
+            "code_url": "",
+            "bibtex_key": "wang2026flexmap",
+            "tags": [
+                "autonomous vehicles",
+                "computer vision"
+            ],
+            "abstract": "High-definition (HD) maps provide essential semantic information of road structures for autonomous driving systems, yet current HD map construction methods require calibrated multi-camera setups and either implicit or explicit 2D-to-BEV transformations, making them fragile when sensors fail or camera configurations vary across vehicle fleets. We introduce FlexMap, unlike prior methods that are fixed to a specific N-camera rig, our approach adapts to variable camera configurations without any architectural changes or per-configuration retraining. Our key innovation eliminates explicit geometric projections by using a geometry-aware foundation model with cross-frame attention to implicitly encode 3D scene understanding in feature space. FlexMap features two core components: a spatial-temporal enhancement module that separates cross-view spatial reasoning from temporal dynamics, and a camera-aware decoder with latent camera tokens, enabling view-adaptive attention without the need for projection matrices. Experiments demonstrate that FlexMap outperforms existing methods across multiple configurations while maintaining robustness to missing views and sensor variations, enabling more practical real-world deployment.",
+            "keywords": [
+                "HD maps",
+                "autonomous driving",
+                "computer vision",
+                "flexible camera configurations",
+                "BEV transformation",
+                "foundation models"
+            ],
+            "featured": true,
+            "award": "",
+            "note": "arXiv preprint",
+            "acceptance_rate": "",
+            "citation": "R. Wang, C. Zhou, A. Salarpour, X. Liu, Z. Cheng, F. Luo, M. D. Pesé, and S. Huang, \"FlexMap: Generalized HD Map Construction from Flexible Camera Configurations,\" arXiv preprint arXiv:2601.22376, 2026."
+        },
+        {
             "id": "infocom-2026",
             "title": "Lightweight Detection of Abnormal Battery Drain Induced by Network Operations of Mobile Apps",
             "authors": "Run Wang, Marco Brocanelli, Xiaorui Wang",
