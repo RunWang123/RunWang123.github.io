@@ -171,7 +171,6 @@
     <h2>Publications and Preprints</h2>
     <ul class="cv-list">
       {% for publication in publications %}
-      {% if publication.status != "under_review" %}
       <li class="cv-item">
         <div class="cv-item-header">
           <div class="cv-item-title">{{ publication.title }}</div>
@@ -187,29 +186,9 @@
           {% endif %}
         </div>
       </li>
-      {% endif %}
       {% endfor %}
     </ul>
   </div>
-
-  {% assign manuscripts = publications | where: "status", "under_review" %}
-  {% if manuscripts.size > 0 %}
-  <div class="cv-section">
-    <h2>Manuscripts Currently Under Review</h2>
-    <ul class="cv-list">
-      {% for publication in manuscripts %}
-      <li class="cv-item">
-        <div class="cv-item-header">
-          <div class="cv-item-title">{{ publication.title }}</div>
-        </div>
-        <div class="cv-item-content">
-          <div class="cv-item-detail">{{ publication.authors }}</div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
   {% endif %}
   
   {% if cv.presentations.size > 0 %}
