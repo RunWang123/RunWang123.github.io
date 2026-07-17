@@ -11,119 +11,16 @@
 {% endfor %}
 {% assign unique_pub_tags = all_pub_tags | uniq | sort %}
 
-<style>
-  /* Filter Styles */
-  .pub-filter-container {
-    margin-bottom: 0px;
-    margin-top: 20px;
-  }
-
-  .tag-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 0px;
-  }
-
-  /* Override external CSS spacing */
-  .publications-container {
-    margin-top: 0 !important;
-    padding-top: 10px !important;
-  }
-
-  /* Tighten List Items */
-  .publication-item {
-    margin-bottom: 10px !important;
-    padding: 10px 0 !important;
-  }
-
-  .publication-item.featured {
-    padding: 15px 15px !important;
-    margin: 10px -15px !important;
-  }
-
-  .publication-header {
-    margin-bottom: 4px !important;
-  }
-
-  .publication-title {
-    margin-bottom: 2px !important;
-  }
-
-  .publication-venue {
-    margin-bottom: 5px !important;
-  }
-
-  .publication-abstract {
-    margin-bottom: 10px !important;
-    padding-top: 5px !important;
-  }
-
-  .tag-chip {
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85em;
-    user-select: none;
-    transition: all 0.2s;
-    border: none;
-    text-decoration: none;
-    font-family: sans-serif;
-  }
-
-  /* Available Tags */
-  .tag-avail {
-    background-color: #f1f3f5;
-    color: #495057;
-    border: 1px solid #dee2e6;
-  }
-
-  .tag-avail:hover {
-    background-color: #e9ecef;
-    border-color: #ced4da;
-  }
-
-  /* Selected Tags */
-  .tag-selected {
-    background-color: #228be6;
-    color: white;
-    display: flex;
-    align-items: center;
-    border: 1px solid #1c7cd6;
-  }
-
-  .tag-selected:hover {
-    background-color: #1c7cd6;
-  }
-
-  .tag-remove-icon {
-    margin-left: 8px;
-    font-weight: bold;
-    font-size: 1.1em;
-    line-height: 0.8;
-  }
-
-  .tags-label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    display: block;
-    font-size: 0.85em;
-    color: #868e96;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-</style>
-
 <!-- Filter UI -->
 {% if unique_pub_tags.size > 0 %}
 <div class="pub-filter-container">
   <!-- Row 1: Available Tags -->
   <div>
-    <span class="tags-label">Detailed Areas</span>
+    <span class="tags-label">Filter by research area</span>
     <div id="pub-row-available" class="tag-container">
       {% for tag in unique_pub_tags %}
       {% assign tag_slug = tag | slugify %}
-      <button class="tag-chip tag-avail" data-slug="{{ tag_slug }}" data-label="{{ tag }}"
+      <button type="button" class="tag-chip tag-avail" data-slug="{{ tag_slug }}" data-label="{{ tag }}"
         onclick="addPubTag('{{ tag_slug }}')">
         {{ tag }}
       </button>
@@ -148,6 +45,13 @@
   {% continue %}
   {% endif %}
 
+  {% if pub.status == "under_review" and manuscripts_heading_shown != true %}
+  <h2 class="publication-group-title">Manuscripts Under Review</h2>
+  {% assign manuscripts_heading_shown = true %}
+  {% elsif pub.id == "component-segmentation-2023" %}
+  <h2 class="publication-group-title">Acknowledged Work</h2>
+  {% endif %}
+
   <!-- Add data-tags attribute -->
   {% assign pub_tag_slugs = "" %}
   {% if pub.tags %}
@@ -157,16 +61,16 @@
   {% endfor %}
   {% endif %}
 
-  <div class="publication-item{% if pub.featured %} featured{% endif %}" id="{{ pub.id }}"
+  <article class="publication-item{% if pub.featured %} featured{% endif %}{% if pub.status %} publication-item--{{ pub.status }}{% endif %}" id="{{ pub.id }}"
     data-tags="{{ pub_tag_slugs }}">
     <div class="publication-header">
-      {% if pub.venue_short %}
+      {% if pub.venue_short and pub.venue_short != "" %}
       <div class="publication-venue-badge">{{ pub.venue_short }}</div>
       {% endif %}
       <div class="publication-content">
         <h3 class="publication-title">
-          {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
+          {% if pub.url and pub.url != "" %}
+          <a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a>
           {% else %}
           {{ pub.title }}
           {% endif %}
@@ -174,18 +78,20 @@
       </div>
       {% if pub.featured %}
       <span class="publication-featured">Featured</span>
+      {% elsif pub.status == "under_review" %}
+      <span class="publication-status">Under review</span>
       {% endif %}
     </div>
 
     <div class="publication-authors">{{ pub.authors }}</div>
 
     <div class="publication-venue">
-      <em>{{ pub.venue }}</em><span class="publication-year">, {{ pub.year }}</span>
-      {% if pub.acceptance_rate %}<br><span class="publication-acceptance-rate">Acceptance Rate: {{ pub.acceptance_rate
+      <em>{{ pub.venue }}</em>{% if pub.year and pub.year != "" %}<span class="publication-year">, {{ pub.year }}</span>{% endif %}
+      {% if pub.acceptance_rate and pub.acceptance_rate != "" %}<br><span class="publication-acceptance-rate">Acceptance rate: {{ pub.acceptance_rate
         }}</span>{% endif %}
     </div>
 
-    {% if pub.abstract and include.show_abstracts %}
+    {% if pub.abstract and pub.abstract != "" and include.show_abstracts %}
     <div class="publication-abstract">
       <details>
         <summary>Abstract</summary>
@@ -195,34 +101,34 @@
     {% endif %}
 
     <div class="publication-links">
-      {% if pub.url %}
-      <a href="{{ pub.url }}" target="_blank" class="pub-link pub-link-paper">
+      {% if pub.url and pub.url != "" %}
+      <a href="{{ pub.url }}" target="_blank" rel="noopener" class="pub-link pub-link-paper">
         <i class="fas fa-external-link-alt"></i> Paper
       </a>
       {% endif %}
-      {% if pub.pdf_url %}
-      <a href="{{ pub.pdf_url }}" target="_blank" class="pub-link pub-link-pdf">
+      {% if pub.pdf_url and pub.pdf_url != "" %}
+      <a href="{{ pub.pdf_url }}" target="_blank" rel="noopener" class="pub-link pub-link-pdf">
         <i class="fas fa-file-pdf"></i> PDF
       </a>
       {% endif %}
-      {% if pub.slides_url %}
-      <a href="{{ pub.slides_url }}" target="_blank" class="pub-link pub-link-slides">
+      {% if pub.slides_url and pub.slides_url != "" %}
+      <a href="{{ pub.slides_url }}" target="_blank" rel="noopener" class="pub-link pub-link-slides">
         <i class="fas fa-presentation"></i> Slides
       </a>
       {% endif %}
-      {% if pub.code_url %}
-      <a href="{{ pub.code_url }}" target="_blank" class="pub-link pub-link-code">
+      {% if pub.code_url and pub.code_url != "" %}
+      <a href="{{ pub.code_url }}" target="_blank" rel="noopener" class="pub-link pub-link-code">
         <i class="fas fa-code"></i> Code
       </a>
       {% endif %}
-      {% if include.show_bibtex %}
-      <button class="pub-link pub-link-bibtex" onclick="toggleBibtex('{{ pub.id }}')">
+      {% if include.show_bibtex and pub.status != "under_review" %}
+      <button type="button" class="pub-link pub-link-bibtex" aria-expanded="false" aria-controls="bibtex-{{ pub.id }}" onclick="toggleBibtex('{{ pub.id }}', this)">
         <i class="fas fa-quote-right"></i> BibTeX
       </button>
       {% endif %}
     </div>
 
-    {% if include.show_bibtex %}
+    {% if include.show_bibtex and pub.status != "under_review" %}
     <div class="publication-bibtex" id="bibtex-{{ pub.id }}" style="display: none;">
       {% assign open_brace = "{" %}
       {% assign close_brace = "}" %}
@@ -230,16 +136,16 @@
   title = {{ open_brace }}{{ pub.title }}{{ close_brace }},
   author = {{ open_brace }}{{ pub.authors }}{{ close_brace }},
   {% if pub.type == 'journal' %}journal = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% else %}booktitle = {{ open_brace }}{{ pub.venue }}{{ close_brace }}{% endif %},
-  year = {{ open_brace }}{{ pub.year }}{{ close_brace }}{% if pub.address %},
-  address = {{ open_brace }}{{ pub.address }}{{ close_brace }}{% endif %}{% if pub.volume %},
-  volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }}{% endif %}{% if pub.pages %},
-  pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }}{% endif %}{% if pub.doi %},
-  doi = {{ open_brace }}{{ pub.doi }}{{ close_brace }}{% endif %}{% if pub.url %},
+  year = {{ open_brace }}{{ pub.year }}{{ close_brace }}{% if pub.address and pub.address != "" %},
+  address = {{ open_brace }}{{ pub.address }}{{ close_brace }}{% endif %}{% if pub.volume and pub.volume != "" %},
+  volume = {{ open_brace }}{{ pub.volume }}{{ close_brace }}{% endif %}{% if pub.pages and pub.pages != "" %},
+  pages = {{ open_brace }}{{ pub.pages }}{{ close_brace }}{% endif %}{% if pub.doi and pub.doi != "" %},
+  doi = {{ open_brace }}{{ pub.doi }}{{ close_brace }}{% endif %}{% if pub.url and pub.url != "" %},
   url = {{ open_brace }}{{ pub.url }}{{ close_brace }}{% endif %}
 {{ close_brace }}</code></pre>
     </div>
     {% endif %}
-  </div>
+  </article>
   {% endfor %}
 </div>
 
@@ -253,12 +159,14 @@
 
 <script>
   /* BibTeX Toggle */
-  function toggleBibtex(pubId) {
+  function toggleBibtex(pubId, trigger) {
     var bibtexDiv = document.getElementById('bibtex-' + pubId);
     if (bibtexDiv.style.display === 'none') {
       bibtexDiv.style.display = 'block';
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
     } else {
       bibtexDiv.style.display = 'none';
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
     }
   }
 
@@ -319,6 +227,7 @@
     var rowSel = document.getElementById('pub-row-selected');
     var docFilterArea = document.getElementById('pub-filter-area');
     var items = document.querySelectorAll('.publication-item');
+    var groupTitles = document.querySelectorAll('.publication-group-title');
 
     /* 1. Update Available Tags */
     if (rowAvail) {
@@ -347,6 +256,7 @@
           var label = tObj ? tObj.label : slug;
 
           var btn = document.createElement('button');
+          btn.type = 'button';
           btn.className = 'tag-chip tag-selected';
           btn.onclick = function () { removePubTag(slug); };
           btn.innerHTML = label + ' <span class="tag-remove-icon">&times;</span>';
@@ -380,6 +290,10 @@
       } else {
         item.style.display = 'none';
       }
+    });
+
+    groupTitles.forEach(function (title) {
+      title.style.display = selectedPubSlugs.length === 0 ? 'block' : 'none';
     });
   }
 

@@ -1,0 +1,9 @@
+{% assign publication = include.publication %}
+<article class="cv-item cv-publication-item">
+  <div class="cv-item-header">
+    <h3 class="cv-item-title">{% if publication.url and publication.url != "" %}<a href="{{ publication.url }}" target="_blank" rel="noopener">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}</h3>
+    {% if publication.year and publication.year != "" %}<span class="cv-item-date">{{ publication.year }}</span>{% endif %}
+  </div>
+  <div class="cv-item-detail">{{ publication.authors }}</div>
+  <div class="cv-item-subtitle">{{ publication.venue }}{% if publication.acceptance_rate and publication.acceptance_rate != "" %} · Acceptance rate: {{ publication.acceptance_rate }}{% endif %}</div>
+</article>

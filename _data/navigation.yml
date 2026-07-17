@@ -23,8 +23,9 @@ main:
   - title: "Blog"
     url: /year-archive/
     
-  - title: "Resume"
+  - title: "CV"
     url: /cv/
+    persist: true
     
   # - title: "CV"
   #   url: /cv-json/
