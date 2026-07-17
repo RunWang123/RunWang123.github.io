@@ -42,8 +42,9 @@ redirect_from:
 </div>
 
 ## Research Topics
-* 3D Vision
+* 3D Computer Vision
 * AI Security
+* Autonomous Driving
 * Mobile Computing
 
 ## Selected Publications
@@ -79,6 +80,6 @@ redirect_from:
 {% include visitor-map.html %}
 
 ## Collaboration
-I welcome research collaborations in autonomous driving perception, trustworthy AI, and mobile/edge intelligence. If our interests overlap, please email me at [runw@clemson.edu](mailto:runw@clemson.edu).
+I welcome research collaborations in 3D computer vision, autonomous-driving security, and mobile/edge computing. If our interests overlap, please email me at [runw@clemson.edu](mailto:runw@clemson.edu).
 
 </div>

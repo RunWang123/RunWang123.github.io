@@ -166,11 +166,12 @@
   
   {% assign publications = site.data.publications.publications %}
   {% if publications.size > 0 %}
-  <!-- Publications -->
+  <!-- Publications and preprints -->
   <div class="cv-section">
-    <h2>Publications</h2>
+    <h2>Publications and Preprints</h2>
     <ul class="cv-list">
       {% for publication in publications %}
+      {% if publication.status != "under_review" %}
       <li class="cv-item">
         <div class="cv-item-header">
           <div class="cv-item-title">{{ publication.title }}</div>
@@ -186,9 +187,29 @@
           {% endif %}
         </div>
       </li>
+      {% endif %}
       {% endfor %}
     </ul>
   </div>
+
+  {% assign manuscripts = publications | where: "status", "under_review" %}
+  {% if manuscripts.size > 0 %}
+  <div class="cv-section">
+    <h2>Manuscripts Currently Under Review</h2>
+    <ul class="cv-list">
+      {% for publication in manuscripts %}
+      <li class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-title">{{ publication.title }}</div>
+        </div>
+        <div class="cv-item-content">
+          <div class="cv-item-detail">{{ publication.authors }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
   {% endif %}
   
   {% if cv.presentations.size > 0 %}
@@ -360,9 +381,6 @@
     <div class="cv-download-links">
       <a href="{{ site.baseurl }}/files/CV_RW.pdf" class="btn btn--primary" target="_blank">
         <i class="fas fa-file-pdf"></i> Download PDF Version
-      </a>
-      <a href="{{ site.baseurl }}/files/CV_RW.docx" class="btn btn--secondary" target="_blank">
-        <i class="fas fa-file-word"></i> Download Word Version
       </a>
     </div>
     <p class="cv-last-updated">Last updated: {{ site.time | date: "%B %Y" }}</p>

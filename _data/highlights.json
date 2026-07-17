@@ -10,12 +10,17 @@
         {
             "type": "publication",
             "publication_id": "ff3r-2026",
-            "timestamp": "2026-01-15"
+            "timestamp": "2026-04-10"
         },
         {
             "type": "publication",
             "publication_id": "flexmap-2026",
             "timestamp": "2026-01-29"
+        },
+        {
+            "type": "publication",
+            "publication_id": "sat3r-2026",
+            "timestamp": "2026-05-08"
         },
         {
             "type": "publication",
