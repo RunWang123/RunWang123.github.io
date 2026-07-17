@@ -1,10 +1,34 @@
-/* Dark mode is driven by the shared academic design tokens in common-styles.css. */
-html[data-theme="dark"] .cv-container,
-html[data-theme="dark"] .publications-container {
-  color-scheme: dark;
+/* Dark Mode Support - Extended from main theme */
+/* Most dark mode styles are now in common-styles.css */
+/* This file only contains page-specific adjustments */
+
+/* Global Overrides for Main Layout */
+html[data-theme="dark"] body,
+html[data-theme="dark"] #main,
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .page__inner-wrap,
+html[data-theme="dark"] .archive,
+html[data-theme="dark"] .layout--archive,
+html[data-theme="dark"] .page__content,
+html[data-theme="dark"] .archive__item {
+    background-color: transparent !important;
+    color: #ffffff !important;
 }
 
-html[data-theme="dark"] .publication-item.featured,
-html[data-theme="dark"] .cv-header {
-  box-shadow: none;
+/* Page-specific adjustments */
+html[data-theme="dark"] .publication-item.featured {
+    background-color: rgba(14, 161, 197, 0.15) !important;
+    border-color: rgba(14, 161, 197, 0.4) !important;
+}
+
+html[data-theme="dark"] .cv-download-footer {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+html[data-theme="dark"] .cv-header-nav {
+    border-bottom-color: #bdc1c4 !important;
+}
+
+html[data-theme="dark"] .cv-download-header {
+    border-top-color: #bdc1c4 !important;
 }

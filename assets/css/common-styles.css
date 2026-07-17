@@ -1,112 +1,204 @@
-/* Shared design system for the CV and publications pages. */
-:root {
-  --academic-accent: #155e75;
-  --academic-accent-strong: #0e4960;
-  --academic-accent-soft: #ecf7f9;
-  --academic-ink: #17242d;
-  --academic-muted: #5b6870;
-  --academic-border: #dce4e8;
-  --academic-surface: #ffffff;
-  --academic-surface-subtle: #f7fafb;
-  --academic-radius: 8px;
-  --academic-shadow: 0 10px 30px rgba(22, 48, 61, 0.08);
-  --academic-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --academic-serif: Georgia, "Times New Roman", serif;
-}
+/* Common Styles for All Custom Pages (Publications, CV, etc.) */
+/* This file provides consistent mobile and dark mode support across custom pages */
 
-html[data-theme="dark"] {
-  --academic-accent: #67c6d8;
-  --academic-accent-strong: #9adbe7;
-  --academic-accent-soft: #18343d;
-  --academic-ink: #f4f7f8;
-  --academic-muted: #b8c5ca;
-  --academic-border: #4b5b62;
-  --academic-surface: #2f373a;
-  --academic-surface-subtle: #384246;
-  --academic-shadow: none;
-}
-
-.academic-button {
-  display: inline-flex;
-  min-height: 42px;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  padding: 0.58rem 0.9rem;
-  border: 1px solid transparent;
-  border-radius: var(--academic-radius);
-  font-family: var(--academic-sans);
-  font-size: 0.9rem;
-  font-weight: 650;
-  line-height: 1;
-  text-decoration: none !important;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-
-.academic-button--primary {
-  color: #fff !important;
-  background: var(--academic-accent);
-  border-color: var(--academic-accent);
-}
-
-.academic-button--primary:hover {
-  color: #fff !important;
-  background: var(--academic-accent-strong);
-  border-color: var(--academic-accent-strong);
-}
-
-.academic-button--secondary,
-.academic-button--quiet {
-  color: var(--academic-accent-strong) !important;
-  background: transparent;
-  border-color: var(--academic-border);
-}
-
-.academic-button--secondary:hover,
-.academic-button--quiet:hover {
-  background: var(--academic-accent-soft);
-  border-color: var(--academic-accent);
-}
-
-.cv-container,
-.publications-container,
-.pub-filter-container {
-  font-family: var(--academic-sans);
-  color: var(--academic-ink);
-}
-
-.cv-container a,
-.publications-container a {
-  color: var(--academic-accent-strong);
-}
-
-.cv-container a:focus-visible,
-.publications-container a:focus-visible,
-.cv-container button:focus-visible,
-.publications-container button:focus-visible,
-.academic-button:focus-visible {
-  outline: 3px solid var(--academic-accent);
-  outline-offset: 3px;
-}
+/* ============================================================================
+   MOBILE RESPONSIVE STYLES - Light Mode Only
+   ============================================================================ */
 
 @media (max-width: 768px) {
-  .academic-button {
-    min-height: 44px;
+  /* Ensure dark, readable text on mobile devices in LIGHT MODE ONLY */
+  /* Prevents mobile browsers from applying light grey color adjustments */
+  
+  /* Font rendering improvements for all modes */
+  body .publications-container,
+  body .cv-container,
+  body.cv-layout .cv-container {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+  }
+  
+  /* LIGHT MODE ONLY: Force dark text colors on mobile */
+  /* These rules do NOT apply when html[data-theme="dark"] is present */
+  html:not([data-theme="dark"]) body.cv-layout .cv-container *,
+  html:not([data-theme="dark"]) body.cv-layout .cv-container,
+  html:not([data-theme="dark"]) .publications-container *,
+  html:not([data-theme="dark"]) .publications-container,
+  html:not([data-theme="dark"]) .cv-container *,
+  html:not([data-theme="dark"]) .cv-container {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* LIGHT MODE: Headings and titles - darkest */
+  html:not([data-theme="dark"]) body.cv-layout .cv-header h1,
+  html:not([data-theme="dark"]) body.cv-layout .cv-section h2,
+  html:not([data-theme="dark"]) body.cv-layout .cv-item-title,
+  html:not([data-theme="dark"]) body.cv-layout .cv-skill-category h3,
+  html:not([data-theme="dark"]) .publications-container h2,
+  html:not([data-theme="dark"]) .publications-container .publication-title,
+  html:not([data-theme="dark"]) .publications-container .publication-title a,
+  html:not([data-theme="dark"]) .cv-header h1,
+  html:not([data-theme="dark"]) .cv-section h2,
+  html:not([data-theme="dark"]) .cv-item-title,
+  html:not([data-theme="dark"]) .cv-skill-category h3 {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* LIGHT MODE: Secondary text - medium grey */
+  html:not([data-theme="dark"]) body.cv-layout .cv-header h2,
+  html:not([data-theme="dark"]) body.cv-layout .cv-item-subtitle,
+  html:not([data-theme="dark"]) body.cv-layout .cv-contact-item,
+  html:not([data-theme="dark"]) body.cv-layout .cv-item-detail,
+  html:not([data-theme="dark"]) body.cv-layout .cv-item-date,
+  html:not([data-theme="dark"]) .publication-authors,
+  html:not([data-theme="dark"]) .publication-authors .author-name,
+  html:not([data-theme="dark"]) .publication-authors .author-main,
+  html:not([data-theme="dark"]) .publication-venue,
+  html:not([data-theme="dark"]) .publication-year,
+  html:not([data-theme="dark"]) .cv-header h2,
+  html:not([data-theme="dark"]) .cv-item-subtitle,
+  html:not([data-theme="dark"]) .cv-contact-item,
+  html:not([data-theme="dark"]) .cv-item-detail,
+  html:not([data-theme="dark"]) .cv-item-date {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+  }
+  
+  /* LIGHT MODE: Body text and lists */
+  html:not([data-theme="dark"]) body.cv-layout .cv-highlights li,
+  html:not([data-theme="dark"]) body.cv-layout .cv-skill-list li,
+  html:not([data-theme="dark"]) .publication-abstract p,
+  html:not([data-theme="dark"]) .cv-highlights li,
+  html:not([data-theme="dark"]) .cv-skill-list li {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+  }
+  
+  /* LIGHT MODE: Links and buttons */
+  html:not([data-theme="dark"]) .pub-link,
+  html:not([data-theme="dark"]) body.cv-layout .cv-profile-link {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* ============================================================================
+   DARK MODE STYLES - Using html[data-theme="dark"]
+   ============================================================================ */
+/* These styles are aligned with the main theme in _sass/theme/_dark.scss */
+/* Main theme colors: text=#ffffff, link=#0ea1c5, background=#474747 */
+
+/* Global text and background colors */
+html[data-theme="dark"] .publications-container,
+html[data-theme="dark"] .cv-container,
+html[data-theme="dark"] body.cv-layout,
+html[data-theme="dark"] body.cv-layout .cv-container {
+    background-color: transparent !important;
+    color: #ffffff !important;
 }
 
-@media print {
-  .cv-header__actions,
-  .cv-footer,
-  .publication-links,
-  .pub-filter-container { display: none !important; }
+/* All headings - pure white (matching main page) */
+html[data-theme="dark"] .publications-container h1,
+html[data-theme="dark"] .publications-container h2,
+html[data-theme="dark"] .publications-container h3,
+html[data-theme="dark"] .cv-header h1,
+html[data-theme="dark"] .cv-section h2,
+html[data-theme="dark"] .cv-item-title,
+html[data-theme="dark"] .cv-skill-category h3,
+html[data-theme="dark"] .publication-title,
+html[data-theme="dark"] .publication-title a {
+    color: #ffffff !important;
+}
+
+/* Publication title links should be white, not cyan */
+html[data-theme="dark"] .publication-title a:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Body text and paragraphs - white */
+html[data-theme="dark"] .publications-container p,
+html[data-theme="dark"] .cv-container p,
+html[data-theme="dark"] .publication-abstract p,
+html[data-theme="dark"] .cv-highlights li,
+html[data-theme="dark"] .cv-item-subtitle {
+    color: #ffffff !important;
+}
+
+/* Secondary/meta text - light grey */
+html[data-theme="dark"] .publication-authors,
+html[data-theme="dark"] .publication-venue,
+html[data-theme="dark"] .publication-year,
+html[data-theme="dark"] .cv-contact-item,
+html[data-theme="dark"] .cv-item-date,
+html[data-theme="dark"] .cv-item-detail,
+html[data-theme="dark"] .cv-last-updated {
+    color: #bdc1c4 !important;
+}
+
+/* Links - cyan matching main theme */
+/* BUT publication titles should stay white */
+html[data-theme="dark"] .publication-abstract summary,
+html[data-theme="dark"] .cv-profile-link,
+html[data-theme="dark"] .publications-container .wordwrap a {
+    color: #0ea1c5 !important;
+}
+
+html[data-theme="dark"] .publication-abstract summary:hover,
+html[data-theme="dark"] .cv-profile-link:hover {
+    color: #0b7c9a !important;
+}
+
+html[data-theme="dark"] .publications-container .wordwrap a:hover {
+    color: #0b7c9a !important;
+}
+
+/* Borders */
+html[data-theme="dark"] .publication-item,
+html[data-theme="dark"] .cv-section h2,
+html[data-theme="dark"] .cv-header,
+html[data-theme="dark"] .cv-item {
+    border-color: #bdc1c4 !important;
+}
+
+html[data-theme="dark"] .publication-abstract summary {
+    border-bottom-color: #0ea1c5 !important;
+}
+
+/* Backgrounds */
+html[data-theme="dark"] .publication-item:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .publication-bibtex,
+html[data-theme="dark"] .cv-skill-list li {
+    background-color: #5a5a5a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .pub-link {
+    background-color: #5a5a5a !important;
+    border-color: #7a7a7a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .pub-link:hover {
+    background-color: #6a6a6a !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .publication-venue-badge {
+    background-color: #0ea1c5 !important;
+    color: #ffffff !important;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+/* Prevent text color inheritance issues */
+.force-theme-colors * {
+    color: inherit !important;
 }

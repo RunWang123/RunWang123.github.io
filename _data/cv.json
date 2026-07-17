@@ -4,7 +4,7 @@
     "email": "runw@clemson.edu",
     "phone": "+1 (518) 961-8733",
     "website": "https://ulairii.github.io",
-    "summary": "Computer Science Ph.D. student specializing in 3D computer vision, AI security, and mobile/edge computing, with experience spanning research, ML systems, and production software engineering. Published and accepted work in CVPR, IEEE INFOCOM, and IEEE/ACM IWQoS.",
+    "summary": "Ph.D. student in Computer Science (3D computer vision, trustworthy AI, autonomous driving) with research and industry experience spanning deep learning, mobile/edge performance optimization, and full-stack development.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -27,11 +27,6 @@
         "network": "GitHub",
         "username": "ulairii",
         "url": "https://github.com/ulairii"
-      },
-      {
-        "network": "LinkedIn",
-        "username": "runw",
-        "url": "https://www.linkedin.com/in/runw/"
       }
     ]
   },
@@ -44,8 +39,9 @@
       "endDate": "2024-04",
       "summary": "Rockville, MD",
       "highlights": [
-        "Developed and maintained C#/.NET, JavaScript, and SQL Server features for legacy-to-modern application migration, preserving data integrity across production workflows",
-        "Optimized SQL Server query performance using stored procedures, indexing, and execution-plan analysis, reducing query latency by more than 50%"
+        "Assisted migration from legacy systems to newer technologies",
+        "Ensured data integrity and optimized SQL Server queries",
+        "Utilized stored procedures and query tuning techniques"
       ]
     }
   ],
@@ -59,7 +55,7 @@
       "summary": "Clemson, SC",
       "highlights": [
         "Supervisors: Dr. Siyu Huang and Dr. Mert D. Pese",
-        "Ongoing project: Researching AI security and robustness of autonomous-driving systems, focusing on adversarial vulnerabilities in perception and decision-making pipelines"
+        "Conducting research on 3D computer vision and trustworthy AI for autonomous driving systems"
       ]
     },
     {
@@ -71,7 +67,8 @@
       "summary": "Columbus, OH",
       "highlights": [
         "Supervisor: Prof. Xiaorui Wang",
-        "Designed ML and time-series models for mobile/edge performance optimization, producing two peer-reviewed papers accepted to IEEE/ACM IWQoS 2025 and IEEE INFOCOM 2026"
+        "Designed machine learning models and time-series algorithms for mobile and edge performance optimization",
+        "Two papers accepted by IEEE IWQoS 2025 and IEEE INFOCOM 2026"
       ]
     },
     {
@@ -83,8 +80,8 @@
       "summary": "Pittsburgh, PA",
       "highlights": [
         "Supervisors: Prof. Kenji Shimada and Dr. Wentai Zhang",
-        "Adapted PSPNet, DeepLabV3+, and SketchGNN for component extraction from engineering drawings, achieving 84% overall accuracy on an in-house dataset",
-        "Acknowledged by Component Segmentation of Engineering Drawings Using Graph Convolutional Networks"
+        "Developed deep learning methods for component extraction from engineering drawings",
+        "Adapted PSPNet, DeepLabV3+, and SketchGNN, achieving 84% overall accuracy"
       ]
     },
     {
@@ -96,8 +93,8 @@
       "summary": "Pittsburgh, PA",
       "highlights": [
         "Supervisor: Dr. Cai Yang",
-        "Collected and dynamically traced 80+ Linux malware samples, extracting 14 system-level behavioral features for malware behavior analysis",
-        "Built an in-house behavioral dataset from runtime traces to support downstream malware classification and anomaly-detection experiments"
+        "Collected and analyzed 80+ Linux-based malware samples via dynamic system-level tracing",
+        "Constructed an in-house behavioral dataset with 14 discriminative features"
       ]
     },
     {
@@ -109,7 +106,8 @@
       "summary": "Troy, NY",
       "highlights": [
         "Supervisors: Dr. Jeff Kephart and Dr. Xiangyang Mou",
-        "Built a real-time gesture-recognition system in C# and Python using Intel RealSense cameras, collecting 600+ gesture samples and extracting skeletal motion features for recognition experiments"
+        "Implemented a real-time gesture recognition system using C# and Python with Intel RealSense cameras",
+        "Collected 600+ gesture samples and extracted skeletal motion features"
       ]
     }
   ],
@@ -155,18 +153,18 @@
       ]
     },
     {
-      "name": "Cloud / DevOps",
+      "name": "Tools & Frameworks",
       "keywords": [
         "Docker",
         "Kubernetes",
-        "Terraform"
+        "Terraform",
+        "Hugging Face"
       ]
     },
     {
       "name": "Research Areas",
       "keywords": [
-        "3D Computer Vision",
-        "AI Security",
+        "Deep Learning",
         "Autonomous Driving",
         "Mobile Computing"
       ]
@@ -177,9 +175,9 @@
     {
       "name": "Research Interests",
       "keywords": [
-        "3D Computer Vision",
-        "AI Security",
-        "Autonomous Driving",
+        "3D Vision",
+        "Trustworthy AI",
+        "AI Security for Autonomous Vehicles",
         "Mobile Computing"
       ]
     }
@@ -190,14 +188,13 @@
     {
       "name": "Cosmospapers Research Assistant Platform",
       "date": "2026-01 - Present",
-      "description": "Built a RAG-based research discovery platform indexing 54,000+ papers from 15+ top computer-science conferences, with vectorized retrieval and interactive topic exploration. Extracted 150 hierarchical research topics, visualized topic relationships, and shipped a public demo and GitHub repository that attracted 23 stars.",
-      "url": "https://cosmospapers.com/",
-      "code_url": "https://github.com/RunWang123/cosmospaper"
+      "description": "Developed a RAG-based paper search engine, collected and vectorized 9000+ papers from 10+ top AI and Security conferences, and designed in-house algorithms to cluster papers and extract research-trend keywords.",
+      "url": ""
     },
     {
       "name": "User Recommendation MicroService",
       "date": "2022-08 - 2022-12",
-      "description": "Built Spark ETL pipelines on GCP Dataproc to preprocess approximately 1 TB of Twitter data. Deployed cloud-native recommendation microservices using Kubernetes, FastAPI, and Vert.x, achieving 10,000 RPS within a $0.70/hour infrastructure budget.",
+      "description": "Developed Spark-based ETL pipelines to preprocess ~1TB Twitter dataset on GCP Dataproc; orchestrated AWS infrastructure and achieved 10,000 RPS within $0.7/hr budget.",
       "url": ""
     }
   ],
